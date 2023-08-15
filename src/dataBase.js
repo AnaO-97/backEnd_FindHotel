@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 const { DB_NAME, DB_USER, DB_PASSWORD } = process.env;
 
-const dataBase = async () => {
+const dataBase = () => {
 
 
-    await mongoose.connect(`mongodb+srv://findhotel:${DB_PASSWORD}@${DB_USER}.8ocs4hu.mongodb.net/${"Miguel"}`, {
+    mongoose.connect(`mongodb+srv://findhotel:${DB_PASSWORD}@${DB_USER}.8ocs4hu.mongodb.net/${DB_NAME}`, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
