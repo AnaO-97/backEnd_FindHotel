@@ -2,7 +2,6 @@ const { Schema, model } = require("mongoose");
 const bcrypt = require("bcryptjs");
 
 
-
 const userSchema = new Schema({
 
     name: {
@@ -41,7 +40,17 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
-    hasHotels: false
+    role: {
+        type: String,
+        enum: ["User", "Hotel", "Admin"],
+        default: "User",
+        required: true
+    },
+    status: {
+        type: String,
+        enum: ["Active", "Inactive", "Supended", "Banned"],
+        default: "Supended",
+    },
 
 }, { timestamps: true });
 
