@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 const { DB_NAME, DB_USER, DB_PASSWORD } = process.env;
 
+
 const dataBase = () => {
 
 
