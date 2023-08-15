@@ -41,7 +41,12 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
-    hasHotels: false
+    role: {
+        type: String,
+        enum: ["User", "Hotel", "Admin"],
+        default: "User",
+        required: true
+    }
 
 }, { timestamps: true });
 
