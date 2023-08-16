@@ -7,6 +7,7 @@ const dataBase = () => {
 
 
     mongoose.connect(`mongodb+srv://findhotel:${DB_PASSWORD}@${DB_USER}.8ocs4hu.mongodb.net/${DB_NAME}`, {
+
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
