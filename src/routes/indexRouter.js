@@ -6,7 +6,7 @@ const adminRoutes = require("./adminRoutes.js")
 
 const indexRouter = Router();
 indexRouter.use("/user", userRoutes);
-// indexRouter.use("/hotel")
+indexRouter.use("/hotel", hotelRoutes);
 // indexRouter.use("/admin")
 
 
