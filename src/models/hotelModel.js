@@ -3,17 +3,17 @@ const Schema = mongoose.Schema;
 
 const hotelSchema = new Schema({
     name: {
-        type : String,
-        required:true,
-        unique:[true,"Hotel already exist"]
+        type: String,
+        required: true,
+        unique: [true, "Hotel already exist"]
     },
     prices: {
-        minprice :{
-            type:Number,
+        minprice: {
+            type: Number,
             required: true,
 
-        },maxprice:{
-            type:Number,
+        }, maxprice: {
+            type: Number,
             required: true,
         },
     },
@@ -22,7 +22,7 @@ const hotelSchema = new Schema({
         required: true,
     },
     services: {
-        type: String,
+        type: String, //array de strings
         required: true,
     },
     image: {
@@ -34,7 +34,7 @@ const hotelSchema = new Schema({
         required: true,
     },
     roomTypes: {
-        type: String,
+        type: String,//array?
         required: true,
     },
     address: {
@@ -43,17 +43,19 @@ const hotelSchema = new Schema({
     },
     roomService: {
         type: Boolean,
+        default: false,
     },
     wifi: {
         type: Boolean,
+        default: false
     },
     isActive: {
         type: Boolean,
         default: false
     },
-},  {
+}, {
     timestamps: true
 });
 
-const Hotel = mongoose.model('hotel',hotelSchema);
+const Hotel = mongoose.model('hotel', hotelSchema);
 module.exports = Hotel;
