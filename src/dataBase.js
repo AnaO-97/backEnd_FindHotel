@@ -6,7 +6,7 @@ const { DB_NAME, DB_USER, DB_PASSWORD } = process.env;
 const dataBase = () => {
 
 
-    mongoose.connect(`mongodb+srv://findhotel:${DB_PASSWORD}@${DB_USER}.8ocs4hu.mongodb.net/${DB_NAME}`, {
+    mongoose.connect(`mongodb+srv://${DB_NAME}:${DB_PASSWORD}@${DB_USER}.lmykssy.mongodb.net?retryWrites=true&w=majority`, {
 
         useNewUrlParser: true,
         useUnifiedTopology: true,
