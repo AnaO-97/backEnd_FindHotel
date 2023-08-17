@@ -2,8 +2,8 @@ const { Schema, model } = require("mongoose");
 
 
 const roomTypeSchema = new Schema({
-    Hotel_id: {
-        type: mongoose.Schema.Types.ObjectId, ref: 'Hotel',
+    User_id: {
+        type: mongoose.Schema.Types.ObjectId, ref: 'User',
         require: true
     },
     name: {
@@ -15,6 +15,10 @@ const roomTypeSchema = new Schema({
         enum: ["no services", "jacuzzi", "room service", "fridge", "bar", "heater", "air-conditioning"],
         default: ["no services"],
     }],
+    price: {
+        type: Number,
+        required: true
+    },
     stock: {
         type: Number,
         required: true,
