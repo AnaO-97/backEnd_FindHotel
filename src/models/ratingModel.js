@@ -2,6 +2,10 @@ const { Schema, model } = require("mongoose");
 
 
 const ratingSchema = new Schema({
+    User_id: {
+        type: mongoose.Schema.Types.ObjectId, ref: 'User',
+        require: true
+    },
     Deal_id: {
         type: mongoose.Schema.Types.ObjectId, ref: 'Deal',
         require: true
