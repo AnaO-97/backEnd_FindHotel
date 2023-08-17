@@ -7,18 +7,24 @@ const hotelSchema = new Schema({
         required: true,
         unique: [true, "Hotel already exist"]
     },
-    phone: {
-        type: String,
+    prices: {
+        minprice: {
+            type: Number,
+            required: true,
+
+        }, maxprice: {
+            type: Number,
+            required: true,
+        },
     },
     category: {
         type: Number,
         required: true,
     },
-    facilities: [{
+    services: {
         type: String,
-        enum: ['beach', 'swimming pool', 'gym', 'parking', 'room service'],
-        default: []
-    }],
+        required: true,
+    },
     image: {
         type: String,
         required: true,
@@ -47,30 +53,27 @@ const hotelSchema = new Schema({
             required: true
         }
     },
-    roomServices: [{
+    roomTypes: {
         type: String,
-        enum: ["no services", "jacuzzi", "room service", "fridge", "bar", "heater", "air-conditioning"],
-        required: true
-    }],
-    ubication: {
-        country: {
-            type: String,
-            required: true
-        },
-        city: {
-            type: String,
-            required: true,
-        },
-        address: {
-            type: String,
-            required: true
-        }
+        required: true,
+    },
+    address: {
+        type: String,
+        required: true,
+    },
+    roomService: {
+        type: Boolean,
+    },
+    wifi: {
+        type: Boolean,
     },
     isActive: {
         type: Boolean,
         default: false
     },
-}, { timestamps: true });
+}, {
+    timestamps: true
+});
 
-const Hotel = mongoose.model('Hotel', hotelSchema);
+const Hotel = mongoose.model('hotel', hotelSchema);
 module.exports = Hotel;
