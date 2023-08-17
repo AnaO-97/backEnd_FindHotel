@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const userPost = require("../handlers/userPost")
+const userPost = require("../handlers/userPost.js")
 const userGet = require("../handlers/userGet.js")
 const userDelete = require("../handlers/userDelete.js")
 const userPut = require("../handlers/userPut.js")
