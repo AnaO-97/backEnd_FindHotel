@@ -7,16 +7,6 @@ const hotelSchema = new Schema({
         required: true,
         unique: [true, "Hotel already exist"]
     },
-    prices: {
-        minprice: {
-            type: Number,
-            required: true,
-
-        }, maxprice: {
-            type: Number,
-            required: true,
-        },
-    },
     category: {
         type: Number,
         required: true,
@@ -56,6 +46,14 @@ const hotelSchema = new Schema({
     roomTypes: {
         type: String,
         required: true,
+    },
+    country: {
+        type: String,
+        required: true
+    },
+    city: {
+        type: String,
+        required: true
     },
     address: {
         type: String,
