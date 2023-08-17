@@ -22,19 +22,39 @@ const hotelSchema = new Schema({
         required: true,
     },
     services: {
-        type: String, //array de strings
+        type: String,
         required: true,
     },
     image: {
         type: String,
         required: true,
     },
-    food: {
+    services: [{
         type: String,
-        required: true,
+        enum: ['all inclusive', 'breakfast', 'lunch', "dinner", "bar"],
+        default: ['no services']
+    }],
+    // roomTypes: [{
+    //     type: String,
+    //     enum: ['standard', 'double', 'suite'],
+    //     required: true
+    // }],
+    room: {
+        name: {
+            type: String,
+            required: true
+        },
+        price: {
+            type: Number,
+            required: true
+        },
+        stock: {
+            type: Number,
+            required: true
+        }
     },
     roomTypes: {
-        type: String,//array?
+        type: String,
         required: true,
     },
     address: {
@@ -43,11 +63,9 @@ const hotelSchema = new Schema({
     },
     roomService: {
         type: Boolean,
-        default: false,
     },
     wifi: {
         type: Boolean,
-        default: false
     },
     isActive: {
         type: Boolean,
