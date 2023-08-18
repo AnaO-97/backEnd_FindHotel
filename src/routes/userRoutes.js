@@ -9,6 +9,6 @@ const userRoutes = Router();
 userRoutes.post("/", userPost);
 // userRoutes.get("/", userGet);
 // userRoutes.delete("/", userDelete);
-// userRoutes.put("/", userPut);
+userRoutes.put("/", userPut);
 
 module.exports = userRoutes;
