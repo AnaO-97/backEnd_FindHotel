@@ -4,15 +4,15 @@ const { Schema, model } = require("mongoose");
 const hotelRoomSchema = new Schema({
     User_id: {
         type: mongoose.Schema.Types.ObjectId, ref: 'User',
-        require: true
+        required: true
     },
     Hotel_id: {
         type: mongoose.Schema.Types.ObjectId, ref: 'Hotel',
-        require: true
+        required: true
     },
     RoomType_id: {
         type: mongoose.Schema.Types.ObjectId, ref: 'RoomType',
-        require: true
+        required: true
     },
     date: {
         type: Date,

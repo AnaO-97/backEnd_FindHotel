@@ -1,8 +1,8 @@
-const getHotelsByCity = require("../controllers/getHotelsByCity");
+const getHotelsByCity = require("../controllers/getHotelsByState");
 
-const hotelsByCityGet = async (req, res) => {
+const hotelsByStateGet = async (req, res) => {
     try {
-        const { city } = req.body;
+        const { city } = req.params;
         const hotelsFound = await getHotelsByCity(city);
         res.status(200).json(hotelsFound);
     } catch (error) {
@@ -10,4 +10,4 @@ const hotelsByCityGet = async (req, res) => {
     };
 };
 
-module.exports = hotelsByCityGet;
+module.exports = hotelsByStateGet;
