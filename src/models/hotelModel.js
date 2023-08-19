@@ -2,21 +2,17 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const hotelSchema = new Schema({
-    User_id: {
-        type: mongoose.Schema.Types.ObjectId, ref: 'User',
-        require: true
-    },
+    // User_id: {
+    //     type: mongoose.Schema.Types.ObjectId, ref: 'User',
+    //     require: true
+    // },
     name: {
         type: String,
         required: true,
-        unique: [true, "Hotel already exist"]
+        unique: true
     },
     category: {
         type: Number,
-        required: true,
-    },
-    services: {
-        type: String,
         required: true,
     },
     image: {
@@ -47,15 +43,11 @@ const hotelSchema = new Schema({
             required: true
         }
     },
-    roomTypes: {
-        type: String,
-        required: true,
-    },
     country: {
         type: String,
         required: true
     },
-    city: {
+    state: {
         type: String,
         required: true
     },

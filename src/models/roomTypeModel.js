@@ -4,7 +4,7 @@ const { Schema, model } = require("mongoose");
 const roomTypeSchema = new Schema({
     User_id: {
         type: mongoose.Schema.Types.ObjectId, ref: 'User',
-        require: true
+        required: true
     },
     name: {
         type: String,
