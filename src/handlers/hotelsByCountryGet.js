@@ -2,7 +2,7 @@ const getHotelsByCountry = require("../controllers/getHotelsByCountry");
 
 const hotelsByCountryGet = async (req, res) => {
     try {
-        const { country } = req.body;
+        const { country } = req.params;
         const hotelsFound = await getHotelsByCountry(country);
         res.status(200).json(hotelsFound);
     } catch (error) {

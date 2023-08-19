@@ -5,7 +5,7 @@ const hotelDelete = require("../handlers/hotelDelete.js")
 <<<<<<< HEAD
 const hotelPut = require("../handlers/hotelPut.js");
 const hotelsByCountryGet = require('../handlers/hotelsByCountryGet.js');
-const hotelsByCityGet = require('../handlers/hotelsByCityGet.js');
+const hotelsByStateGet = require('../handlers/hotelsByStateGet.js');
 const hotelByNameGet = require('../handlers/hotelByNameGet.js');
 =======
 const hotelPut = require("../handlers/hotelPut.js")
@@ -14,8 +14,8 @@ const hotelPut = require("../handlers/hotelPut.js")
 const hotelRoutes = Router();
 
 hotelRoutes.post("/", hotelPost);
-hotelRoutes.get("/byCountry", hotelsByCountryGet);
-hotelRoutes.get("/byCity", hotelsByCityGet);
+hotelRoutes.get("/byCountry/:country", hotelsByCountryGet);
+hotelRoutes.get("/byState/:state", hotelsByStateGet);
 hotelRoutes.get("/name/:name", hotelByNameGet);
 // hotelRoutes.get("/", hotelGet);
 // hotelRoutes.delete("/", hotelDelete);
