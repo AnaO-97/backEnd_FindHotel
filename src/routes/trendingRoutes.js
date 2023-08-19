@@ -3,7 +3,7 @@ const trendingHotelsGet = require("../handlers/trendingHotelsGet");
 const trendingHotelPost = require("../handlers/trendingHotelPost");
 const trendingStatesGet = require("../handlers/trendingStatesGet");
 const trendingStatesPost = require("../handlers/trendingStatesPost");
-
+const validationTrendingStatesPost =require ("../middlewares/validationTrendingStatesPost");
 const trendingRoutes = Router();
 
 trendingRoutes.get("/hotels", trendingHotelsGet);
