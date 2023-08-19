@@ -1,5 +1,6 @@
 const User = require("../models/userModel");
 
+
 const userUpdate = async (id_userUpdate, atts_userUpdate) => {
 
     const userUpdated = await User.findByIdAndUpdate( 

@@ -33,6 +33,7 @@ const userPut = async (req, res) => {
             res.status(200).json(userUpdated)
         else
             throw new Error("The user ID does not match any user registered in the database");
+
     } catch (error) {
         res.status(404).json({ error: error.message })
     }
