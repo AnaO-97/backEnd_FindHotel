@@ -7,8 +7,8 @@ const userPut = require("../handlers/userPut.js")
 const userRoutes = Router();
 
 userRoutes.post("/", userPost);
-// userRoutes.get("/", userGet);
-// userRoutes.delete("/", userDelete);
+userRoutes.get("/users", userGet);
+ userRoutes.delete("/", userDelete);
 // userRoutes.put("/", userPut);
 
 module.exports = userRoutes;
