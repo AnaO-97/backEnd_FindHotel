@@ -4,7 +4,7 @@ const getUserByEmail = async (req, res) => {
     try {
         const { email } = req.body;        
 
-        const user = await userfind({email:email});
+        const user = await User.find({email});
         res.status(200).json(user)
 
     } catch (error) {
