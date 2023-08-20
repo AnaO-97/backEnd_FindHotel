@@ -2,6 +2,7 @@ const { Schema, model } = require("mongoose");
 const bcrypt = require("bcryptjs");
 
 const userSchema = new Schema({
+<<<<<<< HEAD
     firstName: {
         type: String,
         required: true,
@@ -9,43 +10,77 @@ const userSchema = new Schema({
     lastName: {
         type: String,
         required: true,
-    },
-    age: {
-        type: Number,
-        required: true,
+=======
+
+    name: {
+        first: {
+            type: String,
+            required: false,
+        },
+        last: {
+            type: String,
+            required: false
+        },
+>>>>>>> d54ac0c (Firebase, registerUser, validateUser, mailActiva..)
     },
     email: {
         type: String,
         required: true,
         unique: true,
+        lowercase: true,
+        trim: true,
+        validate: {
+            validator: (value) => {
+                return /^((?!^[._%+-])(?![._%+-]{2,})[a-zñ0-9._%+-]){5,29}[a-zñ0-9]+@(([\w-]+)+\.+[\w-]{2,4})$/.test(value);
+            },
+            message: ({ value }) => `${value} it is not a valid mail.`
+        }
     },
-    password: {
+    image: {
         type: String,
-        required: true,
+        required: false,
+        validate: {
+            validator: (value) => {
+                return /\.(jpg|jpeg|png|gif)$/i.test(value);
+            },
+            message: ({ value }) => `${value} is not a valid image URL.`
+        }
+    },
+    age: {
+        type: Number,
+        required: false,
+        min: 18,
+        max: 120,
+        validate: {
+            validator: (value) => {
+                return Number.isInteger(value);
+            },
+            message: ({ value }) => `${value} no es una edad válida.`
+        }
     },
     phone: {
         type: Number,
-        required: true,
-        unique: true,
+        required: false,
     },
     country: {
         type: String,
-        required: true,
+        required: false,
     },
     state: {
         type: String,
-        required: true,
+        required: false,
     },
     role: {
         type: String,
         enum: ["User", "Hotel", "Admin"],
         default: "User",
-        required: true
+        required: false
     },
     status: {
         type: String,
         enum: ["Active", "Inactive", "Supended", "Banned"],
         default: "Supended",
+        required: false
     },
 
 }, { timestamps: true });
