@@ -2,7 +2,6 @@ const { Schema, model } = require("mongoose");
 const bcrypt = require("bcryptjs");
 
 const userSchema = new Schema({
-<<<<<<< HEAD
     firstName: {
         type: String,
         required: true,
@@ -10,18 +9,6 @@ const userSchema = new Schema({
     lastName: {
         type: String,
         required: true,
-=======
-
-    name: {
-        first: {
-            type: String,
-            required: false,
-        },
-        last: {
-            type: String,
-            required: false
-        },
->>>>>>> d54ac0c (Firebase, registerUser, validateUser, mailActiva..)
     },
     email: {
         type: String,
