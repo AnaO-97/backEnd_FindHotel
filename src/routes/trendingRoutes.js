@@ -9,6 +9,6 @@ const trendingRoutes = Router();
 trendingRoutes.get("/hotels", trendingHotelsGet);
 trendingRoutes.post("/hotel", trendingHotelPost);
 trendingRoutes.get("/state", trendingStatesGet);
-trendingRoutes.post("/state", validationTrendingStatesPost, trendingStatesPost);
+trendingRoutes.post("/state", trendingStatesPost);
 
 module.exports = trendingRoutes;
