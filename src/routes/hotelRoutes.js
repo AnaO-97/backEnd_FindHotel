@@ -10,6 +10,7 @@ const hotelByNameGet = require('../handlers/hotelByNameGet.js');
 const hotelRoutes = Router();
 
 hotelRoutes.post("/", hotelPost);
+hotelRoutes.get("/",hotelGet);
 hotelRoutes.get("/byCountry/:country", hotelsByCountryGet);
 hotelRoutes.get("/byState/:state", hotelsByStateGet);
 hotelRoutes.get("/name/:name", hotelByNameGet);
