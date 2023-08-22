@@ -1,7 +1,7 @@
 const Hotel = require("../models/hotelModel");
 
 const getHotelList = async (key, name) => {
-    return await Hotel.find({ [key]: { $regex: name, $options: "i" } });
+    return await Hotel.find({ [key]: { $regex: name, $options: "i" }, isActive: true });
 };
 
 const getHotels = (name) => {

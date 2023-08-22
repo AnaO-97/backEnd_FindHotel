@@ -14,12 +14,12 @@ const hotelRoutes = Router();
 hotelRoutes.post("/", hotelPost);
 hotelRoutes.get("/", hotelGet);
 hotelRoutes.get("/detail", hotelDetailGet);
-hotelRoutes.get("/byCountry/:country", hotelsByCountryGet);
-hotelRoutes.get("/byState/:state", hotelsByStateGet);
-hotelRoutes.get("/name/:name", hotelByNameGet);
-// hotelRoutes.get("/", hotelGet);
+// hotelRoutes.get("/byCountry/:country", hotelsByCountryGet);
+// hotelRoutes.get("/byState/:state", hotelsByStateGet);
+// hotelRoutes.get("/name/:name", hotelByNameGet);
+hotelRoutes.get("/", hotelGet);
 hotelRoutes.delete("/desactive/:id", hotelDeleteDesactive);
 hotelRoutes.delete("/:id", hotelDelete);
-// hotelRoutes.put("/", hotelPut);
+hotelRoutes.put("/", hotelPut);
 
 module.exports = hotelRoutes;
