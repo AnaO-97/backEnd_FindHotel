@@ -5,7 +5,7 @@ const userValidations = {
         check('firstName')
             .notEmpty().withMessage('The name cannot be empty.')
             .isLength({ min: 2 }).withMessage('The name must have min 2 characters.')
-            .isLength({ max: 30 }).withMessage('The name must have max 2 characters.')
+            .isLength({ max: 30 }).withMessage('The name must have max 30 characters.')
             .matches(/^(?!.*\s{2,}).*$/).withMessage('The name cannot have multiple spaces in a row.')
             .matches(/^([!-/:-@\[-`\{-~¿¡°])/).withMessage('The name cannot start with special characters.')
             .matches(/([!-/:-@\[-`\{-~¿¡°])$/).withMessage('The name cannot end with special characters.')
