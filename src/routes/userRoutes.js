@@ -21,21 +21,21 @@ userRoutes.delete("/", userDelete);
 
 const userAuthSignUp = require('../controllers/userAuthSignUp.js');
 const userAuthActiveAccount = require('../controllers/userAuthActiveAccount.js');
-const { userSignUp, userActivate } = require('../middlewares/validateUser.js')
+const { userSignUp, userActivate } = require('../middlewares/validateUser.js');
 
 userRoutes.post("/register", userSignUp, (req, res, next) => {
     const errors = validationResult(req.body);
-    if (!errors.isEmpty()) return res.status(422).json({ errors: errors.array() })
-    next()
+    if (!errors.isEmpty()) return res.status(422).json({ errors: errors.array() });
+    next();
 },
     (req, res) => {
-        userAuthSignUp(req, res)
+        userAuthSignUp(req, res);
     })
 
-userRoutes.get("/active/:userActive", userActivate, userActivate, (req, res, next) => {
+userRoutes.get("/active/:userActive", userActivate, (req, res, next) => {
     const errors = validationResult(req.params);
-    if (!errors.isEmpty()) return res.status(422).json({ errors: errors.array() })
-    next()
+    if (!errors.isEmpty()) return res.status(422).json({ errors: errors.array() });
+    next();
 },
     (req, res) => {
         userAuthActiveAccount(req, res);

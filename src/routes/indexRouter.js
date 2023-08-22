@@ -2,7 +2,7 @@ const { Router } = require("express");
 const userRoutes = require("./userRoutes");
 const bulkRoutes = require("./bulkRoutes.js");
 const hotelRoutes = require("./hotelRoutes");
-const adminRoutes = require("./adminRoutes.js")
+const adminRoutes = require("./adminRoutes.js");
 const destinationRoutes = require("./destinationRoutes.js");
 const trendingRoutes = require("./trendingRoutes");
 

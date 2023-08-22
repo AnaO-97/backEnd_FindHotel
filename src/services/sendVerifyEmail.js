@@ -1,5 +1,5 @@
 require("dotenv").config();
-const path = require('path')
+const path = require('path');
 const fs = require('fs');
 
 /**
@@ -22,9 +22,9 @@ const sendVerifyEmail = (email, activationAccount, activationPath) => {
         to: email,
         subject: "Verifica tu cuenta.",
         html: mailValidation
-    }
+    };
 
-    return mail
-}
+    return mail;
+};
 
-module.exports = sendVerifyEmail
+module.exports = sendVerifyEmail;

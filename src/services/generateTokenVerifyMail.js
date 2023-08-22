@@ -20,7 +20,7 @@ const generateTokenVerifyMail = async (user) => {
         }
     } catch (error) {
         throw new error.message;
-    }
-}
+    };
+};
 
-module.exports = generateTokenVerifyMail
+module.exports = generateTokenVerifyMail;
