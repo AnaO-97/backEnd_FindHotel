@@ -9,34 +9,7 @@ const hotelSchema = new Schema({
     name: {
         type: String,
         required: true,
-    },
-    email: {
-        type: String,
-        required: true,
-        unique: true,
-        lowercase: true,
-        trim: true,
-        validate: {
-            validator: (value) => {
-                return /^((?!^[._%+-])(?![._%+-]{2,})[a-zñ0-9._%+-]){5,29}[a-zñ0-9]+@(([\w-]+)+\.+[\w-]{2,4})$/.test(value);
-            },
-            message: ({ value }) => `${value} it is not a valid mail.`
-        }
-    },
-    images: {
-        type: [
-            {
-                id: { type: String },
-                src: { type: String },
-                type: { type: String }
-            }
-        ],
-        validate: {
-            validator: function (arr) {
-                return arr.length <= 5;
-            },
-            message: 'The maximum number of images allowed is 5.'
-        }
+        unique: true
     },
     category: {
         type: Number,
@@ -47,18 +20,11 @@ const hotelSchema = new Schema({
         enum: ['all inclusive', 'breakfast', 'lunch', "dinner", "bar"],
         default: ['no services']
     }],
-    country: {
-        type: String,
-        required: true
-    },
-    state: {
-        type: String,
-        required: true
-    },
-    address: {
-        type: String,
-        required: true,
-    },
+    // roomTypes: [{
+    //     type: String,
+    //     enum: ['standard', 'double', 'suite'],
+    //     required: true
+    // }],
     room: {
         name: {
             type: String,
@@ -72,6 +38,18 @@ const hotelSchema = new Schema({
             type: Number,
             required: true
         }
+    },
+    country: {
+        type: String,
+        required: true
+    },
+    state: {
+        type: String,
+        required: true
+    },
+    address: {
+        type: String,
+        required: true,
     },
     roomService: {
         type: Boolean,
