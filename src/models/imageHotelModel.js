@@ -1,16 +1,19 @@
 const { Schema, model } = require("mongoose");
 
 const imagesHotelSchema = new Schema({
+    // User_id: {
+    //     type: Schema.Types.ObjectId, 
+    //     ref: 'User',
+    //     require: true
+    // },
     Hotel_id: {
-        type: mongoose.Schema.Types.ObjectId, ref: 'Hotel',
+        type: Schema.Types.ObjectId,
+        ref: 'Hotel',
         require: true
     },
     image: {
         type: String,
         required: true
-    },
-    date: {
-        type: Date,
     }
 }, { timestamps: true });
 
