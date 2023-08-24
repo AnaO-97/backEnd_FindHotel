@@ -1,4 +1,4 @@
-const { desactiveHotel } = require("../controllers/hotel");
+const { desactiveHotel } = require("../../controllers/hotel");
 
 const hotelDeleteDesactive = async (req, res) => {
     try {

@@ -1,4 +1,4 @@
-const { postTrendingHotel } = require("../controllers/trending");
+const { postTrendingHotel } = require("../../controllers/trending");
 
 const trendingHotelPost = async (req, res) => {
     try {
