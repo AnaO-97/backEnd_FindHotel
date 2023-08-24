@@ -1,4 +1,4 @@
-const getHotelByName = require("../controllers/getHotelByName");
+const { getHotelByName } = require("../controllers/hotel");
 
 const hotelByNameGet = async (req, res) => {
     try {

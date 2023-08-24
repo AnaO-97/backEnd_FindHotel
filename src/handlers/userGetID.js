@@ -1,8 +1,8 @@
-const userFindById = require("../controllers/userFindById.js");
+const userFindById = require("../controllers/user/userFindById.js");
 
 const userGetID = async (req, res) => {
     try {
-        const { id } = req.params;        
+        const { id } = req.params;
 
         const user = await userFindById(id);
         res.status(200).json(user)

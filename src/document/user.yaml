@@ -1,0 +1,173 @@
+openapi: 3.0.0
+info:
+  title: User API
+  version: 1.0.0
+paths:
+  /user:
+    get:
+      tags:
+        - User
+      summary: Get user information
+      description: Retrieve information about users.
+      responses:
+        '200':
+          description: Successful response
+    post:
+      tags:
+        - User
+      summary: Create a new user
+      description: Create a new user profile.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                email:
+                  type: string
+      responses:
+        '201':
+          description: User created successfully
+        '400':
+          description: Bad request
+
+  /user/{userId}:
+    get:
+      tags:
+        - User
+      summary: Get user by ID
+      description: Retrieve user information by user ID.
+      parameters:
+        - name: userId
+          in: path
+          description: ID of the user
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+        '404':
+          description: User not found
+
+  /user/register:
+    post:
+      tags:
+        - User
+      summary: Sign up user
+      description: Register user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
+      responses:
+        '201':
+          description: User register successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Login' # Reference to the Hotel schema
+        '400':
+          description: Bad request
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        firstName:
+          type: string
+          description: First name of the user
+        lastName:
+          type: string
+          description: Last name of the user
+        email:
+          type: string
+          format: email
+          description: Email address of the user
+        image:
+          type: string
+          description: URL of the user's image
+        age:
+          type: integer
+          description: Age of the user
+          minimum: 18
+          maximum: 120
+        phone:
+          type: integer
+          description: Phone number of the user
+        country:
+          type: string
+          description: Country where the user resides
+        state:
+          type: string
+          description: State where the user resides
+        role:
+          type: string
+          description: Role of the user (User, Hotel, Admin)
+          enum:
+            - User
+            - Hotel
+            - Admin
+        status:
+          type: string
+          description: Status of the user account
+          enum:
+            - Active
+            - Inactive
+            - Supended
+            - Banned
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp of when the user account was created
+        updatedAt:
+          type: string
+          format: date-time
+          description: Timestamp of when the user account was last updated
+      example:
+        firstName: John
+        lastName: Doe
+        email: john@example.com
+        image: https://example.com/profile.jpg
+        age: 30
+        phone: 1234567890
+        country: United States
+        state: California
+        role: User
+        status: Active
+        createdAt: '2023-08-23T12:34:56Z'
+        updatedAt: '2023-08-23T14:45:32Z'
+
+    Login:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+
+    Error:
+      type: object
+      properties:
+        code:
+          description: Código de error
+          type: string
+        status:
+          description: httpstatus
+          type: integer
+          format: int32
+        type:
+          type: string
+          description: Tipo de error
+        message:
+          type: string
+          description: Mensaje de error

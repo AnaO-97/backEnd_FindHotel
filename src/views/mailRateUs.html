@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Calificación de Servicio</title>
+		<style>
+			/* Estilos básicos para el formulario */
+			body {
+				font-family: Arial, sans-serif;
+				background-color: #f4f4f4;
+				margin: 0;
+				padding: 0;
+			}
+
+			.container {
+				max-width: 550px;
+				margin: 0 auto;
+				padding: 20px;
+				background-color: #fff;
+				box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+				border-radius: 25px;
+				text-align: center;
+				margin-top: 20px;
+			}
+
+			.logo {
+				width: 180px;
+				height: 50px;
+				margin: 0;
+				background-image: url('https://firebasestorage.googleapis.com/v0/b/find-hotel-396121.appspot.com/o/FindHotel%2FlogoBlack.svg?alt=media&token=28e1093e-ce82-47f8-93cc-2420a3d3fef5');
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+
+			p {
+				text-align: justify;
+			}
+
+      .BoxRate {
+        display: block;
+        text-align: justify;
+        width: min-content;
+        margin: 0px auto;
+    }
+
+      .rating-stars {
+        display: flex;
+        align-items: stretch;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: nowrap;
+    }
+
+			.rating-stars {
+				display: flex;
+				align-items: center;
+			}
+			.rating-stars label {
+        cursor: pointer;
+        font-size: 40px;
+        color: #b1acac;
+        margin: 0 5px;
+    }
+			.rating-stars input[type='radio'] {
+				display: none;
+			}
+			.rating-stars label:hover,
+			.rating-stars label:hover ~ label {
+				color: orange;
+			}
+			.comment-box {
+				margin-top: 10px;
+        max-height: 100% !important;
+			}
+      form{
+        width: 500px !important;
+      }
+      textarea{
+        width: 100% !important;
+        min-height: 50px !important;
+        max-height: 100px !important;
+      }
+			.submit-button {
+				margin-top: 20px;
+				background-color: #007bff;
+				color: white;
+				border: none;
+				padding: 10px 20px;
+				cursor: pointer;
+				border-radius: 5px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="logo"></div>
+			<div class="header">
+				<h1>Welcome to FindHotel</h1>
+				<h3>Thank you for choosing us</h3>
+			</div>
+			<h3>Your opinion is very important to us.</h3>
+			<p>
+				At FindHotel we are grateful to have you, which is why we invite you to
+				rate our services. On a scale of 1 to 10, where 1 is very dissatisfied
+				and 10 is very satisfied.
+			</p>
+			<div>
+				<div class="BoxRate">
+					<p>
+						<h3>
+							How satisfied were you with the attention provided by the hotel?
+						</h3>
+					</p>
+					<form
+						action="URL_DE_TU_SERVIDOR_PARA_MANEJAR_CALIFICACION"
+						method="POST">
+						<div>
+							<div class="rating-stars">
+								<input
+									type="radio"
+									name="rateHotel"
+									value="1"
+									id="Hotel_I1" />
+								<label
+									for="Hotel_I1"
+									id="Hotel_1"
+									>★</label
+								>
+
+								<input
+									type="radio"
+									name="rateHotel"
+									value="2"
+									id="Hotel_I2" />
+								<label
+									for="Hotel_I2"
+									id="Hotel_2"
+									>★</label
+								>
+
+								<input
+									type="radio"
+									name="rateHotel"
+									value="3"
+									id="Hotel_I3" />
+								<label
+									for="Hotel_I3"
+									id="Hotel_3"
+									>★</label
+								>
+
+								<input
+									type="radio"
+									name="rateHotel"
+									value="4"
+									id="Hotel_I4" />
+								<label
+									for="Hotel_I4"
+									id="Hotel_4"
+									>★</label
+								>
+
+								<input
+									type="radio"
+									name="rateHotel"
+									value="5"
+									id="Hotel_I5" />
+								<label
+									for="Hotel_I5"
+									id="Hotel_5"
+									>★</label
+								>
+
+								<input
+									type="radio"
+									name="rateHotel"
+									value="6"
+									id="Hotel_I6" />
+								<label
+									for="Hotel_I6"
+									id="Hotel_6"
+									>★</label
+								>
+
+								<input
+									type="radio"
+									name="rateHotel"
+									value="7"
+									id="Hotel_I7" />
+								<label
+									for="Hotel_I7"
+									id="Hotel_7"
+									>★</label
+								>
+
+								<input
+									type="radio"
+									name="rateHotel"
+									value="8"
+									id="Hotel_I8" />
+								<label
+									for="Hotel_I8"
+									id="Hotel_8"
+									>★</label
+								>
+
+								<input
+									type="radio"
+									name="rateHotel"
+									value="9"
+									id="Hotel_I9" />
+								<label
+									for="Hotel_I9"
+									id="Hotel_9"
+									>★</label
+								>
+
+								<input
+									type="radio"
+									name="rateHotel"
+									value="10"
+									id="Hotel_I10" />
+								<label
+									for="Hotel_I10"
+									id="Hotel_10"
+									>★</label
+								>
+								<!-- ... Añadir más estrellas aquí ... -->
+							</div>
+							<textarea
+								placeholder="Please, let us know your opinion..."
+								name="comment"
+								id="commentHotel"
+                maxlength="300"
+								rows="4"
+								cols="50"></textarea>
+						</div>
+
+	
+
+				<div>
+          <p>
+						<h3>
+              How satisfied were you with the attention and support provided by
+              FindHotel?
+						</h3>
+					</p>
+
+						<div>
+							<div class="rating-stars">
+								<input
+									type="radio"
+									name="rateFindHotel"
+									value="1"
+									id="FindHotel_I1" />
+								<label
+									for="FindHotel_I1"
+									id="FindHotel_1"
+									>★</label
+								>
+
+								<input
+									type="radio"
+									name="rateFindHotel"
+									value="2"
+									id="FindHotel_I2" />
+								<label
+									for="FindHotel_I2"
+									id="FindHotel_2"
+									>★</label
+								>
+
+								<input
+									type="radio"
+									name="rateFindHotel"
+									value="3"
+									id="FindHotel_I3" />
+								<label
+									for="FindHotel_I3"
+									id="FindHotel_3"
+									>★</label
+								>
+
+								<input
+									type="radio"
+									name="rateFindHotel"
+									value="4"
+									id="FindHotel_I4" />
+								<label
+									for="FindHotel_I4"
+									id="FindHotel_4"
+									>★</label
+								>
+
+								<input
+									type="radio"
+									name="rateFindHotel"
+									value="5"
+									id="FindHotel_I5" />
+								<label
+									for="FindHotel_I5"
+									id="FindHotel_5"
+									>★</label
+								>
+
+								<input
+									type="radio"
+									name="rateFindHotel"
+									value="6"
+									id="FindHotel_I6" />
+								<label
+									for="FindHotel_I6"
+									id="FindHotel_6"
+									>★</label
+								>
+
+								<input
+									type="radio"
+									name="rateFindHotel"
+									value="7"
+									id="FindHotel_I7" />
+								<label
+									for="FindHotel_I7"
+									id="FindHotel_7"
+									>★</label
+								>
+
+								<input
+									type="radio"
+									name="rateFindHotel"
+									value="8"
+									id="FindHotel_I8" />
+								<label
+									for="FindHotel_I8"
+									id="FindHotel_8"
+									>★</label
+								>
+
+								<input
+									type="radio"
+									name="rateFindHotel"
+									value="9"
+									id="FindHotel_I9" />
+								<label
+									for="FindHotel_I9"
+									id="FindHotel_9"
+									>★</label
+								>
+
+								<input
+									type="radio"
+									name="rateFindHotel"
+									value="10"
+									id="FindHotel_I10" />
+								<label
+									for="FindHotel_I10"
+									id="FindHotel_10"
+									>★</label
+								>
+							</div>
+							<div class="comment-box">
+								<textarea
+                placeholder="Please, let us know your opinion..."
+									name="comment"
+									id="commentFindHotel"
+									rows="4"
+                  maxlength="300"
+									cols="50"></textarea>
+							</div>
+						</div>
+						<button
+							type="submit"
+							class="submit-button">
+							Enviar calificación
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			document.addEventListener('DOMContentLoaded', function () {
+				// Restaurar valores de calificación y comentarios para el hotel
+				const savedRateHotel = localStorage.getItem('rateHotel');
+				const savedCommentHotel = localStorage.getItem('commentHotel');
+
+				if (savedRateHotel) {
+					// Restaurar calificación del hotel
+					setStarColor('rateHotel', savedRateHotel, 'Hotel_');
+					const hotelRatingInput = document.querySelector(
+						`input[name="rateHotel"][value="${savedRateHotel}"]`
+					);
+					hotelRatingInput.checked = true;
+				}
+
+				if (savedCommentHotel) {
+					// Restaurar comentario del hotel
+					const commentHotelInput = document.getElementById('commentHotel');
+					commentHotelInput.value = savedCommentHotel;
+				}
+
+				// Restaurar valores de calificación y comentarios para FindHotel
+				const savedRateFindHotel = localStorage.getItem('rateFindHotel');
+				const savedCommentFindHotel = localStorage.getItem('commentFindHotel');
+
+				if (savedRateFindHotel) {
+					// Restaurar calificación de FindHotel
+					setStarColor('rateFindHotel', savedRateFindHotel, 'FindHotel_');
+					const findHotelRatingInput = document.querySelector(
+						`input[name="rateFindHotel"][value="${savedRateFindHotel}"]`
+					);
+					findHotelRatingInput.checked = true;
+				}
+
+				if (savedCommentFindHotel) {
+					// Restaurar comentario de FindHotel
+					const commentFindHotelInput =
+						document.getElementById('commentFindHotel');
+					commentFindHotelInput.value = savedCommentFindHotel;
+				}
+			});
+			// Habilitar la selección de estrellas y cambiar color
+			const rateHotel = document.querySelectorAll('input[name="rateHotel"]');
+			const rateFindHotel = document.querySelectorAll(
+				'input[name="rateFindHotel"]'
+			);
+
+			const savedRateHotel = localStorage.getItem('rateHotel');
+			const savedRateFindHotel = localStorage.getItem('rateFindHotel');
+
+			// Restaurar valores guardados en el localStorage para el hotel
+			if (savedRateHotel) {
+				rateHotel.forEach((input) => {
+					if (input.value <= savedRateHotel) {
+						input.checked = true;
+						for (let i = 1; i <= input.value; i++) {
+							const filledStar = document.getElementById('Hotel_' + i);
+							filledStar.style.color = 'orange';
+						}
+					}
+				});
+			}
+
+			// Restaurar valores guardados en el localStorage para FindHotel
+			if (savedRateFindHotel) {
+				rateFindHotel.forEach((input) => {
+					if (input.value <= savedRateFindHotel) {
+						input.checked = true;
+						for (let i = 1; i <= input.value; i++) {
+							const filledStar = document.getElementById('FindHotel_' + i);
+							filledStar.style.color = 'orange';
+						}
+					}
+				});
+			}
+
+			// Función para cambiar color de estrellas
+			function setStarColor(ratingInputName, ratingNumber, idPrefix) {
+				const ratingInputs = document.querySelectorAll(
+					`input[name="${ratingInputName}"]`
+				);
+				const numberLabel = document.getElementById(idPrefix + ratingNumber);
+
+				for (let i = 1; i <= ratingNumber; i++) {
+					const filledStar = document.getElementById(idPrefix + i);
+					filledStar.style.color = 'orange';
+				}
+
+				for (
+					let i = parseInt(ratingNumber) + 1;
+					i <= ratingInputs.length;
+					i++
+				) {
+					const emptyStar = document.getElementById(idPrefix + i);
+					emptyStar.style.color = 'gray';
+				}
+			}
+
+			rateHotel.forEach((input) => {
+				input.addEventListener('click', () => {
+					localStorage.setItem('rateHotel', input.value);
+					setStarColor('rateHotel', input.value, 'Hotel_');
+				});
+			});
+
+			rateFindHotel.forEach((input) => {
+				input.addEventListener('click', () => {
+					localStorage.setItem('rateFindHotel', input.value);
+					setStarColor('rateFindHotel', input.value, 'FindHotel_');
+				});
+			});
+
+			// Almacenar el comentario en el localStorage
+			const commentHotelInput = document.getElementById('commentHotel');
+			commentHotelInput.addEventListener('input', () => {
+				localStorage.setItem('commentHotel', commentHotelInput.value);
+			});
+
+			const commentFindHotelInput = document.getElementById('commentFindHotel');
+			commentFindHotelInput.addEventListener('input', () => {
+				localStorage.setItem('commentFindHotel', commentFindHotelInput.value);
+			});
+		</script>
+	</body>
+</html>

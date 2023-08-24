@@ -1,0 +1,80 @@
+openapi: 3.0.0
+info:
+  title: User API
+  version: 1.0.0
+paths:
+  /roomTypes/{userId}:
+    post:
+      tags:
+        - Room Type
+      summary: Create a new room type
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoomType'
+      responses:
+        '201':
+          description: Room type created successfully
+        '400':
+          description: Bad request - Invalid input
+        '500':
+          description: Internal server error
+
+components:
+  schemas:
+    RoomType:
+      type: object
+      properties:
+        User_id:
+          type: string
+          description: ID of the user associated with the room type
+        name:
+          type: string
+          description: Name of the room type
+        roomServices:
+          type: array
+          description: List of available room services
+          items:
+            type: string
+            enum:
+              - no services
+              - jacuzzi
+              - room service
+              - fridge
+              - bar
+              - heater
+              - air-conditioning
+          default: [no services]
+        price:
+          type: number
+          description: Price of the room type
+          minimum: 0
+        stock:
+          type: number
+          description: Available stock of the room type
+          minimum: 0
+        isActive:
+          type: boolean
+          description: Indicates if the room type is active
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp of when the room type was created
+        updatedAt:
+          type: string
+          format: date-time
+          description: Timestamp of when the room type was last updated
+      example:
+        User_id: 603f650a325e8e001c93af46
+        name: Deluxe Room
+        roomServices:
+          - jacuzzi
+          - room service
+          - bar
+        price: 200
+        stock: 10
+        isActive: true
+        createdAt: '2023-08-23T12:34:56Z'
+        updatedAt: '2023-08-23T14:45:32Z'
