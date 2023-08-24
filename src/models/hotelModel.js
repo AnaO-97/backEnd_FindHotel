@@ -102,6 +102,20 @@ const hotelSchema = new Schema({
             required: true
         }
     },
+    room: {
+        name: {
+            type: String,
+            required: true
+        },
+        price: {
+            type: Number,
+            required: true
+        },
+        stock: {
+            type: Number,
+            required: true
+        }
+    },
     roomService: {
         type: Boolean,
     },

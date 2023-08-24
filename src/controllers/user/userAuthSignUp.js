@@ -1,7 +1,7 @@
 const { firebase } = require("../../config");
 const { mailTransport } = require("../../config");
 const { sendVerifyMail, generateTokenVerifyMail } = require("../../services")
-const User = require("../../models/userModel.js");
+const { User } = require("../../models");
 
 const userAuthSignUp = async (req, res) => {
     const { email, password } = req.body;
