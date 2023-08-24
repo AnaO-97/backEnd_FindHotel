@@ -1,10 +1,13 @@
 const { Schema, model } = require("mongoose");
 
-
 const ratingSchema = new Schema({
     Deal_id: {
         type: Schema.Types.ObjectId,
         ref: 'Deal',
+        require: true
+    },
+    User_id: {
+        type: mongoose.Schema.Types.ObjectId, ref: 'User',
         require: true
     },
     rate_Hotel: {

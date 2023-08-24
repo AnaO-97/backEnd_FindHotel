@@ -74,9 +74,6 @@ components:
         User_id:
           type: string
           description: ID of the user associated with the deal
-        Hotel_id:
-          type: string
-          description: ID of the hotel associated with the deal
         RoomType_id:
           type: string
           description: ID of the room type associated with the deal
