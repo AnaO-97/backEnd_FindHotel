@@ -1,4 +1,4 @@
-const { putHotels } = require("../controllers/hotel");
+const { putHotels } = require("../../controllers/hotel");
 
 const hotelPut = async (req, res) => {
     try {

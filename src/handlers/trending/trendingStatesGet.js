@@ -1,4 +1,4 @@
-const { getTrendingStates } = require("../controllers/trending");
+const { getTrendingStates } = require("../../controllers/trending");
 
 const trendingStateGet = async (req, res) => {
     try {

@@ -1,13 +1,13 @@
 const { Router } = require('express');
-const hotelPost = require("../handlers/hotelPost.js");
-const hotelGet = require("../handlers/hotelGet.js");
-const hotelDelete = require("../handlers/hotelDelete.js");
-const hotelDeleteDesactive = require("../handlers/hotelDeleteDesactive.js");
-const hotelPut = require("../handlers/hotelPut.js");
-const hotelsByCountryGet = require('../handlers/hotelsByCountryGet.js');
-const hotelsByStateGet = require('../handlers/hotelsByStateGet.js');
-const hotelByNameGet = require('../handlers/hotelByNameGet.js');
-const hotelDetailGet = require('../handlers/hotelDetailGet.js');
+const hotelPost = require("../handlers/hotel/hotelPost.js");
+const hotelGet = require("../handlers/hotel/hotelGet.js");
+const hotelDelete = require("../handlers/hotel/hotelDelete.js");
+const hotelDeleteDesactive = require("../handlers/hotel/hotelDeleteDesactive.js");
+const hotelPut = require("../handlers/hotel/hotelPut.js");
+const hotelsByCountryGet = require('../handlers/hotel/hotelsByCountryGet.js');
+const hotelsByStateGet = require('../handlers/hotel/hotelsByStateGet.js');
+const hotelByNameGet = require('../handlers/hotel/hotelByNameGet.js');
+const hotelDetailGet = require('../handlers/hotel/hotelDetailGet.js');
 
 const hotelRoutes = Router();
 
