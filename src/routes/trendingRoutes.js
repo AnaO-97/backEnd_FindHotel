@@ -1,9 +1,9 @@
 const { Router } = require("express");
-const trendingHotelsGet = require("../handlers/trendingHotelsGet");
-const trendingHotelPost = require("../handlers/trendingHotelPost");
-const trendingStatesGet = require("../handlers/trendingStatesGet");
-const trendingStatesPost = require("../handlers/trendingStatesPost");
-const validationTrendingStatesPost =require ("../middlewares/validationTrendingStatesPost");
+const trendingHotelsGet = require("../handlers/trending/trendingHotelsGet");
+const trendingHotelPost = require("../handlers/trending/trendingHotelPost");
+const trendingStatesGet = require("../handlers/trending/trendingStatesGet");
+const trendingStatesPost = require("../handlers/trending/trendingStatesPost");
+const validationTrendingStatesPost = require("../middlewares/validationTrendingStatesPost");
 const trendingRoutes = Router();
 
 trendingRoutes.get("/hotels", trendingHotelsGet);

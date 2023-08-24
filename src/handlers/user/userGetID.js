@@ -1,4 +1,4 @@
-const userFindById = require("../controllers/user/userFindById.js");
+const userFindById = require("../../controllers/user/userFindById.js");
 
 const userGetID = async (req, res) => {
     try {
