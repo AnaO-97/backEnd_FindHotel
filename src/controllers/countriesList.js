@@ -1,6 +1,6 @@
-const axios = require('axios')
+const axios = require('axios');
 require('dotenv').config();
-const { ENDPOINT_COUNTRIES, AUTHORIZATION, ACCEPT } = process.env
+const { ENDPOINT_COUNTRIES, AUTHORIZATION, ACCEPT } = process.env;
 
 const countriesList = async () => {
     return await axios({
@@ -16,7 +16,7 @@ const countriesList = async () => {
         })
         .catch((error) => {
             throw Error(error)
-        })
-}
+        });
+};
 
 module.exports = countriesList;
