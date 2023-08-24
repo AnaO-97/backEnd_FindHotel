@@ -1,6 +1,6 @@
-const putHotels = require("../controllers/putHotels.js");
+const { putHotels } = require("../controllers/hotel");
 
-const  hotelPut= async (req, res) => {
+const hotelPut = async (req, res) => {
     try {
         const attributes = req.body;
         const hotelsUpdate = await putHotels(attributes);

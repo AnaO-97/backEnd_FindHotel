@@ -1,6 +1,6 @@
-const getHotels = require("../controllers/getHotels.js");
+const { getHotels } = require("../controllers/hotel");
 
-const  hotelGet= async (req, res) => {
+const hotelGet = async (req, res) => {
     try {
         const { name } = req.query;
         const hotelsFound = await getHotels(name);

@@ -1,0 +1,122 @@
+openapi: 3.0.0
+info:
+  title: User API
+  version: 1.0.0
+paths:
+  /hotel:
+    get:
+      tags:
+        - Hotel
+      summary: Get hotel by name
+      description: Retrieve a hotel by its name.
+      parameters:
+        - in: query
+          name: name
+          schema:
+            type: string
+          required: true
+          description: The name of the hotel to retrieve.
+      responses:
+        '200':
+          description: Hotel found successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Hotel'
+        '400':
+          description: Bad request
+
+    post:
+      tags:
+        - Hotel
+      summary: Create a new hotel
+      description: Create a new hotel profile.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Hotel' # Reference to the Hotel schema
+      responses:
+        '201':
+          description: Hotel created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Hotel' # Reference to the Hotel schema
+        '400':
+          description: Bad request
+
+components:
+  schemas:
+    Image:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: d909dee0-22a5-4df5-a7be-3a1e3d9b65d6
+        src:
+          type: string
+          example: d909dee0-22a5-4df5-a7be-3a1e3d9b65d6.jpg
+        type:
+          type: string
+          example: jpg
+
+    Room:
+      type: object
+      properties:
+        name:
+          type: string
+          example: VIP
+        price:
+          type: number
+          example: 500
+        stock:
+          type: number
+          example: 25
+
+    Hotel:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Levis Hilton
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
+        category:
+          type: number
+          example: 5
+        services:
+          type: array
+          items:
+            type: string
+            enum: ['all inclusive', 'breakfast', 'lunch', 'dinner', 'bar']
+            example: ['breakfast', 'bar']
+        country:
+          type: string
+          example: Mexico
+        state:
+          type: string
+          example: Jalisco
+        address:
+          type: string
+          example: 65901 Turcotte Village Apt. 837
+        room:
+          $ref: '#/components/schemas/Room'
+        roomService:
+          type: boolean
+        wifi:
+          type: boolean
+        isActive:
+          type: boolean
+          default: true
+      required:
+        - name
+        - category
+        - country
+        - state
+        - address
+        - room

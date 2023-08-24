@@ -1,0 +1,82 @@
+{
+    "success": {
+        "create": {
+            "status": 201,
+            "msg": "was created"
+        },
+        "empty": {
+            "status": 204,
+            "msg": "no items stored"
+        },
+        "find": {
+            "status": 200,
+            "msg": "found"
+        },
+        "login": {
+            "status": 200,
+            "msg": "logged in successfully"
+        },
+        "logout": {
+            "status": 200,
+            "msg": "logged out"
+        },
+        "remove": {
+            "status": 204,
+            "msg": "removed"
+        },
+        "update": {
+            "status": 200,
+            "msg": "updated"
+        }
+    },
+    "error": {
+        "assigned": {
+            "status": 400,
+            "msg": "is already assigned"
+        },
+        "conflict": {
+            "status": 409,
+            "msg": "conflict detected"
+        },
+        "create": {
+            "status": 400,
+            "msg": "was previously created"
+        },
+        "find": {
+            "status": 404,
+            "msg": "not found"
+        },
+        "forbidden": {
+            "status": 403,
+            "msg": "forbidden"
+        },
+        "register": {
+            "status": 400,
+            "msg": "is already registered"
+        },
+        "remove": {
+            "status": 400,
+            "msg": "cannot be removed"
+        },
+        "unauthorized": {
+            "status": 401,
+            "msg": "unauthorized access"
+        },
+        "validation": {
+            "status": 422,
+            "msg": "validation failed"
+        },
+        "notSupported": {
+            "status": 405,
+            "msg": "operation not supported"
+        },
+        "server": {
+            "status": 500,
+            "msg": "internal server error"
+        }
+    },
+    "token": {
+        "noValid": "No valid token",
+        "refreshed": "Refreshed tokens"
+    }
+}

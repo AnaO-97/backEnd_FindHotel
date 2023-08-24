@@ -1,0 +1,87 @@
+openapi: '3.0.2'
+info:
+  title: API Title
+  version: '1.0'
+servers:
+  - url: https://api.server.test/v1
+paths:
+  /deals:
+    post:
+      tags:
+        - Deal
+      summary: Create a new deal
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Deal'
+      responses:
+        '201':
+          description: Deal created successfully
+        '400':
+          description: Bad request - Invalid input
+        '500':
+          description: Internal server error
+    get:
+      tags:
+        - Deal
+      summary: Get list of deals
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: List of deals retrieved successfully
+          content:
+            application/json:
+              example: []
+
+components:
+  schemas:
+    Deal:
+      type: object
+      properties:
+        User_id:
+          type: string
+          description: ID of the user associated with the deal
+        RoomType_id:
+          type: string
+          description: ID of the room type associated with the deal
+        status:
+          type: string
+          description: Status of the deal
+          enum:
+            - booking
+            - purchase
+            - cancelled
+            - active
+            - finished
+        checkIn:
+          type: string
+          format: date-time
+          description: Check-in date for the deal
+        checkOut:
+          type: string
+          format: date-time
+          description: Check-out date for the deal
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp of when the deal was created
+        updatedAt:
+          type: string
+          format: date-time
+          description: Timestamp of when the deal was last updated
+      example:
+        User_id: 603f650a325e8e001c93af46
+        RoomType_id: 603f650a325e8e001c93af47
+        status: active
+        checkIn: '2023-08-23T14:00:00Z'
+        checkOut: '2023-08-25T12:00:00Z'
+        createdAt: '2023-08-23T12:34:56Z'
+        updatedAt: '2023-08-23T14:45:32Z'
+
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

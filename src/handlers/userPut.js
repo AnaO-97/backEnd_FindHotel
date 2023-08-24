@@ -1,4 +1,4 @@
-const userUpdate = require("../controllers/userUpdate");
+const userUpdate = require("../controllers/user/userUpdate");
 
 /*
     La ruta put:/user recibe en su "req.body" el objeto "userUpDate_Obj" con dos propiedades
@@ -18,18 +18,18 @@ const userUpdate = require("../controllers/userUpdate");
 const userPut = async (req, res) => {
     try {
         const atts_UserSchema = ["firstName", "lastName", "age", "email", "password", "phone", "country", "city", "status"];
-        const userUpDate_Obj = req.body;        
-        const { id_userUpdate, atts_userUpdate }  = userUpDate_Obj;  
-        
+        const userUpDate_Obj = req.body;
+        const { id_userUpdate, atts_userUpdate } = userUpDate_Obj;
 
-        for (const attribute in atts_userUpdate) {            
-            if(!atts_UserSchema.includes(attribute))
+
+        for (const attribute in atts_userUpdate) {
+            if (!atts_UserSchema.includes(attribute))
                 throw new Error(`The <--${attribute}--> attribute that you want to update is not valid`);
         }
-        
+
         const userUpdated = await userUpdate(id_userUpdate, atts_userUpdate);
 
-        if(userUpdated)
+        if (userUpdated)
             res.status(200).json(userUpdated)
         else
             throw new Error("The user ID does not match any user registered in the database");

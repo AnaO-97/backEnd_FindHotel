@@ -1,11 +1,11 @@
-const desactiveHotel = require("../controllers/desactiveHotel.js");
+const { desactiveHotel } = require("../controllers/hotel");
 
-const  hotelDeleteDesactive= async (req, res) => {
+const hotelDeleteDesactive = async (req, res) => {
     try {
         const { id } = req.params;
         const hotelDesactive = await desactiveHotel(id);
 
-        if(hotelDesactive !== null)
+        if (hotelDesactive !== null)
             res.status(200).json(hotelDesactive);
         else
             throw new Error('The hotel with the ID provided cannot be found');
