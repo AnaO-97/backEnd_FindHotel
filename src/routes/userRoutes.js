@@ -18,9 +18,7 @@ userRoutes.delete("/", userDelete);
 // userRoutes.put("/", userPut);
 
 
-
-const userAuthSignUp = require('../controllers/userAuthSignUp.js');
-const userAuthActiveAccount = require('../controllers/userAuthActiveAccount.js');
+const { userAuthActiveAccount, userAuthSignUp } = require('../controllers/user')
 const { userSignUp, userActivate } = require('../middlewares/validateUser.js');
 
 userRoutes.post("/register", userSignUp, (req, res, next) => {

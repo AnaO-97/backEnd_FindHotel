@@ -1,0 +1,73 @@
+openapi: 3.0.0
+info:
+  title: User API
+  version: 1.0.0
+paths:
+  /ratings:
+    post:
+      tags:
+        - Rating
+      summary: Create a new rating
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Rating'
+      responses:
+        '201':
+          description: Rating created successfully
+        '400':
+          description: Bad request - Invalid input
+        '500':
+          description: Internal server error
+
+components:
+  schemas:
+    Rating:
+      type: object
+      properties:
+        Deal_id:
+          type: string
+          description: ID of the Deal associated with the rating
+        User_id:
+          type: string
+          description: ID of the User who is giving the rating
+        rate_Hotel:
+          type: integer
+          description: Rating for the Hotel on a scale of 1 to 10
+          minimum: 1
+          maximum: 10
+        rate_FindHotel:
+          type: integer
+          description: Rating for the FindHotel service on a scale of 1 to 10
+          minimum: 1
+          maximum: 10
+        comment_Hotel:
+          type: string
+          description: Comment for the Hotel, maximum 250 characters
+        comment_FindHotel:
+          type: string
+          description: Comment for the FindHotel service, maximum 250 characters
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp of when the rating was created
+        updatedAt:
+          type: string
+          format: date-time
+          description: Timestamp of when the rating was last updated
+      required:
+        - Deal_id
+        - User_id
+        - rate_Hotel
+        - rate_FindHotel
+      example:
+        Deal_id: 603f650a325e8e001c93af45
+        User_id: 603f650a325e8e001c93af46
+        rate_Hotel: 9
+        rate_FindHotel: 8
+        comment_Hotel: 'Great experience at the hotel!'
+        comment_FindHotel: 'Booking process was smooth.'
+        createdAt: '2023-08-23T12:34:56Z'
+        updatedAt: '2023-08-23T14:45:32Z'

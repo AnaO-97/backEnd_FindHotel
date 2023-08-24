@@ -1,11 +1,11 @@
-const postTrendingStates = require("../controllers/postTrendingStates.js")
+const { postTrendingStates } = require("../controllers/trending");
 
-const trendingStatesPost=async(req, res)=>{
-    try{
+const trendingStatesPost = async (req, res) => {
+    try {
         const attributes = req.body;
-        const trendingStates=await postTrendingStates(attributes)
+        const trendingStates = await postTrendingStates(attributes)
         res.status(200).json(trendingStates);
-    }catch(err){
+    } catch (err) {
         res.status(500).json(err);
     }
 }

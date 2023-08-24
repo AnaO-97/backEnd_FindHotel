@@ -23,6 +23,21 @@ const hotelSchema = new Schema({
             message: ({ value }) => `${value} it is not a valid mail.`
         }
     },
+    images: {
+        type: [
+            {
+                id: { type: String },
+                src: { type: String },
+                type: { type: String }
+            }
+        ],
+        validate: {
+            validator: function (arr) {
+                return arr.length <= 5;
+            },
+            message: 'The maximum number of images allowed is 5.'
+        }
+    },
     category: {
         type: Number,
         required: true,
@@ -43,6 +58,20 @@ const hotelSchema = new Schema({
     address: {
         type: String,
         required: true,
+    },
+    room: {
+        name: {
+            type: String,
+            required: true
+        },
+        price: {
+            type: Number,
+            required: true
+        },
+        stock: {
+            type: Number,
+            required: true
+        }
     },
     roomService: {
         type: Boolean,

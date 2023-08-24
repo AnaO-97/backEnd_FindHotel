@@ -1,4 +1,4 @@
-const getTrendigHotels = require("../controllers/getTrendingHotels");
+const { getTrendigHotels } = require("../controllers/trending");
 
 const trendingHotelsGet = async (req, res) => {
     try {

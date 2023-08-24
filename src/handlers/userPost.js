@@ -1,4 +1,4 @@
-const userCreate = require("../controllers/userCreate.js");
+const userCreate = require("../controllers/user/userCreate.js");
 
 const userPost = async (req, res) => {
     try {
