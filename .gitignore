@@ -1,7 +1,5 @@
 node_modules
-FirabaseKey.json
 
-firebase.json
-.firebaserc
-*.rules
+
+
 *.env
