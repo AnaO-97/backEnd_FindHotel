@@ -9,7 +9,19 @@ const hotelSchema = new Schema({
     name: {
         type: String,
         required: true,
-        unique: true
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+        lowercase: true,
+        trim: true,
+        validate: {
+            validator: (value) => {
+                return /^((?!^[._%+-])(?![._%+-]{2,})[a-zñ0-9._%+-]){5,29}[a-zñ0-9]+@(([\w-]+)+\.+[\w-]{2,4})$/.test(value);
+            },
+            message: ({ value }) => `${value} it is not a valid mail.`
+        }
     },
     category: {
         type: Number,
@@ -20,25 +32,6 @@ const hotelSchema = new Schema({
         enum: ['all inclusive', 'breakfast', 'lunch', "dinner", "bar"],
         default: ['no services']
     }],
-    // roomTypes: [{
-    //     type: String,
-    //     enum: ['standard', 'double', 'suite'],
-    //     required: true
-    // }],
-    room: {
-        name: {
-            type: String,
-            required: true
-        },
-        price: {
-            type: Number,
-            required: true
-        },
-        stock: {
-            type: Number,
-            required: true
-        }
-    },
     country: {
         type: String,
         required: true
