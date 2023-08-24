@@ -1,4 +1,4 @@
-const createOrder = require('../controllers/createOrder.js')
+const createOrder = require('../../controllers/mercadopago/createOrder')
 
 const createOrderPost = async (req, res) => {
     try {

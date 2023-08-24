@@ -4,7 +4,7 @@ const createOrder = async (attributes) => {
 
     mercadopago.configure({
         // sandbox: true,
-        access_token: 'TEST-1953808183232659-082322-c0d3eac7f8d6093c57055c9169598604-288193957'
+        access_token: 'TEST-7828819132258985-082312-4e714b3199bdca87348c3fe1582f7e24-1457695181'
     });
 
     const preference = {

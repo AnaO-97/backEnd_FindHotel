@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const createOrderPost = require("../handlers/createOrderPost.js");
+const createOrderPost = require("../handlers/mercadopago/createOrderPost");
 const receiveWebhook = require('../handlers/receiveWebhook.js');
 
 const paymentRoutes = Router();
