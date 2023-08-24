@@ -68,7 +68,5 @@ schedule.scheduleJob('0 0 * * *', async () => {
     }
 });
 
-
-
 const Deal = model("Deal", dealSchema);
 module.exports = Deal; 
