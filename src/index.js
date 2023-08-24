@@ -1,9 +1,8 @@
-const app = require("./app");
-const dataBase = require("./dataBase");
+const app = require("./src/app");
+const dataBase = require("./src/dataBase");
+const config = require("./src/config/config");
 
-require("dotenv").config();
-const { PORT } = process.env;
-app.listen(PORT, () => {
+app.listen(config.PORT, () => {
     dataBase();
-    console.log(`Server on port: http://localhost:${PORT}`);
+    console.log(`Server on port: http://localhost:${ config.PORT  }`);
 });
