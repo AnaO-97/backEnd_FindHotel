@@ -1,4 +1,4 @@
-const userUpdate = require("../../controllers/user/userUpdate");
+const { userUpdate } = require("../../controllers/user");
 
 /*
     La ruta put:/user recibe en su "req.body" el objeto "userUpDate_Obj" con dos propiedades

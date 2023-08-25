@@ -36,13 +36,13 @@ paths:
               properties:
                 User_id:
                   type: string
-                  example: 613abc123def456789000000
+                  description: ID of the user associated with the deal
                 Hotel_id:
                   type: string
-                  example: 623def456abc789012300000
+                  description: ID of the hotel associated with the deal
                 RoomType_id:
                   type: string
-                  example: 634efg567hij890123400000
+                  description: ID of the rom type associated with the deal
                 status:
                   type: string
                   description: Status of the deal
@@ -74,9 +74,6 @@ components:
         User_id:
           type: string
           description: ID of the user associated with the deal
-        Hotel_id:
-          type: string
-          description: ID of the hotel associated with the deal
         RoomType_id:
           type: string
           description: ID of the room type associated with the deal
@@ -99,7 +96,6 @@ components:
           description: Check-out date for the deal
       example:
         User_id: 603f650a325e8e001c93af46
-        Hotel_id: 623def456abc789012300000
         RoomType_id: 603f650a325e8e001c93af47
         status: active
         checkIn: '2023-08-23T14:00:00Z'

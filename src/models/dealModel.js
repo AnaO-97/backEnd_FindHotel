@@ -1,20 +1,19 @@
 const schedule = require('node-schedule');
-const mongoose = require("mongoose");
-// const { Schema, model } = require("mongoose");
+const { Schema, model } = require("mongoose");
 
-const dealSchema = new mongoose.Schema({
+const dealSchema = new Schema({
     User_id: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'User',
         required: true
     },
     Hotel_id: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'Hotel',
         required: true
     },
     RoomType_id: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'RoomType',
         required: true
     },
@@ -32,7 +31,7 @@ const dealSchema = new mongoose.Schema({
                 if (this.checkOut != null)
                     return value < this.checkOut;
             },
-            message: 'end_Rent must be after checkout.',
+            message: 'CheckIn must be before CheckOut.',
         },
     },
     checkOut: {
@@ -42,7 +41,7 @@ const dealSchema = new mongoose.Schema({
             validator: function (value) {
                 return value > this.checkIn;
             },
-            message: 'end_Rent must be after checkout.',
+            message: 'CheckOut must be after CheckIn.',
         },
     },
 }, {
@@ -70,5 +69,5 @@ schedule.scheduleJob('0 0 * * *', async () => {
 
 
 
-const Deal = mongoose.model("Deal", dealSchema);
+const Deal = model("Deal", dealSchema);
 module.exports = Deal; 
