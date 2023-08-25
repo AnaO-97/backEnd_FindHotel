@@ -7,7 +7,7 @@ const ratingSchema = new Schema({
         require: true
     },
     User_id: {
-        type: mongoose.Schema.Types.ObjectId, ref: 'User',
+        type: Schema.Types.ObjectId, ref: 'User',
         require: true
     },
     rate_Hotel: {
