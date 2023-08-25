@@ -4,29 +4,33 @@ const createOrder = async (attributes) => {
 
     mercadopago.configure({
         // sandbox: true,
-        access_token: 'TEST-1953808183232659-082322-c0d3eac7f8d6093c57055c9169598604-288193957'
+        access_token: 'APP_USR-221953760167332-082511-1b65cb0c419e3820eaff2484eec10617-1460119336'
     });
 
     const preference = {
         items: [
             {
-                title: attributes.description,
+                title: attributes.title,
                 quantity: attributes.quantity,
                 currency_id: 'USD',
                 unit_price: attributes.unit_price
             }
         ],
-        notification_url: "https://ab86-179-6-14-10.ngrok.io/webhook",
+
+        notification_url: "https://6d19-179-6-14-10.ngrok.io/payment/webhook",
         back_urls: {
-            success: "http://localhost:3000/",
+            success: "https://front-find-hotel.vercel.app/",
             // pending: "https://e720-190-237-16-208.sa.ngrok.io/pending",
-            // failure: "https://e720-190-237-16-208.sa.ngrok.io/failure",
+            failure: "https://front-find-hotel.vercel.app/",
         },
         auto_return: "approved"
     };
     return mercadopago.preferences.create(preference)
         .then((response) => {
-            return { init_point: response.body.init_point };
+            return {
+                init_point: response.response.sandbox_init_point,
+                id: response.body.id,
+            };
         })
         .catch((error) => {
             console.log(error);
