@@ -6,10 +6,6 @@ const ratingSchema = new Schema({
         ref: 'Deal',
         require: true
     },
-    User_id: {
-        type: Schema.Types.ObjectId, ref: 'User',
-        require: true
-    },
     rate_Hotel: {
         type: Number,
         enum: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
