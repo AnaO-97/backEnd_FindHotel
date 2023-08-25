@@ -1,11 +1,9 @@
-const Deal = require("../../models/dealModel");
+const { Deal } = require("../../models");
 
 const getDealsRoomByRoomId = () => {
     try {
-        
+
     } catch (error) {
-        res.statu(400).json({error : error.message})
+        res.status(400).json({ error: error.message })
     }
 }
-
-module.exports = getDealsRoomByRoomId;

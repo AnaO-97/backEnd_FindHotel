@@ -1,4 +1,4 @@
-const Deal = require("../../models/dealModel");
+const { Deal } = require("../../models");
 
 const getDealById = async (req, res) => {
     try {

@@ -1,10 +1,11 @@
-const Deal = require("../../models/dealModel");
+const { Deal } = require("../../models");
 
 const getDealsHotelByHotelId = () => {
+
     try {
-        
+
     } catch (error) {
-        res.statu(400).json({error : error.message})
+        res.status(400).json({ error: error.message })
     }
 }
 

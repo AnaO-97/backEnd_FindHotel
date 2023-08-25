@@ -21,7 +21,7 @@ userRoutes.delete("/", userDelete);
 const { userAuthActiveAccount, userAuthSignUp } = require('../controllers/user')
 const { userSignUp, userActivate } = require('../middlewares/validateUser.js');
 
-userRoutes.post("/register", userSignUp, (req, res, next) => {
+userRoutes.post("/signup", userSignUp, (req, res, next) => {
     const errors = validationResult(req.body);
     if (!errors.isEmpty()) return res.status(422).json({ errors: errors.array() });
     next();
