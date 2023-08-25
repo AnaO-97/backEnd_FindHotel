@@ -1,6 +1,6 @@
 const Deal = require('../../models/dealModel');
 
-const getDealsUserById = async (req, res) => {
+const getDealsUserByUserId = async (req, res) => {
     const id = req.params.userId
     const dealUser = await Deal.aggregate([
         { $match: { User_id: mongoose.Types.ObjectId(id) } },
@@ -76,4 +76,4 @@ const getDealsUserById = async (req, res) => {
     ]);
 };
 
-module.exports = getDealsUserById;
+module.exports = getDealsUserByUserId;

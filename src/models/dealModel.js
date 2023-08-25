@@ -1,25 +1,27 @@
 const schedule = require('node-schedule');
-const { Schema, model } = require("mongoose");
+const mongoose = require("mongoose");
+// const { Schema, model } = require("mongoose");
 
-const dealSchema = new Schema({
+const dealSchema = new mongoose.Schema({
     User_id: {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
     },
     Hotel_id: {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Hotel',
         required: true
     },
     RoomType_id: {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'RoomType',
         required: true
     },
     status: {
         type: String,
         enum: ["booking", "purchase", "cancelled", "active", "finished"],
+        default: "booking",
         required: true
     },
     checkIn: {
@@ -66,5 +68,7 @@ schedule.scheduleJob('0 0 * * *', async () => {
     }
 });
 
-const Deal = model("Deal", dealSchema);
+
+
+const Deal = mongoose.model("Deal", dealSchema);
 module.exports = Deal; 
