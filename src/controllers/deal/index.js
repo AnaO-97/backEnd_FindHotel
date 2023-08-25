@@ -3,11 +3,13 @@ const getCanceledDealUserById = require('./getCanceledDealUserById')
 const getDealById = require('./getDealById')
 const getDealsHotelByCheckIn = require('./getDealsHotelByCheckIn')
 const getDealsHotelByCheckOut = require('./getDealsHotelByCheckOut')
-const getDealsHotelById = require('./getDealsHotelById')
-const getDealsRoomsById = require('./getDealsRoomsById')
-const getDealsUserById = require('./getDealsUserByUserId')
-const updateDealsById = require('./updateDealsById')
+const getDealsHotelByHotelId = require('./getDealsHotelByHotelId')
+const getDealsRoomByRoomId = require('./getDealsRoomByRoomId')
+const getDealsUserByUserId = require('./getDealsUserByUserId')
 const updateDealsByStatus = require('./updateDealsByStatus')
+const createDealByUserId = require('./createDealByUserId');
+const updateDealsById = require('./updateDealsById');
+
 
 module.exports = {
     getActiveDealsUserById,
@@ -15,9 +17,10 @@ module.exports = {
     getDealById,
     getDealsHotelByCheckIn,
     getDealsHotelByCheckOut,
-    getDealsHotelById,
-    getDealsRoomsById,
-    getDealsUserById,
-    updateDealsById,
+    getDealsHotelByHotelId,
+    getDealsRoomByRoomId,    
+    getDealsUserByUserId,
+    createDealByUserId,
     updateDealsByStatus,
+    updateDealsById
 }

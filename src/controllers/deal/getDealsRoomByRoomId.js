@@ -1,6 +1,6 @@
 const Deal = require("../../models/dealModel");
 
-const getDealsHotelByCheckIn = () => {
+const getDealsRoomByRoomId = () => {
     try {
         
     } catch (error) {
@@ -8,4 +8,4 @@ const getDealsHotelByCheckIn = () => {
     }
 }
 
-module.exports = getDealsHotelByCheckIn
+module.exports = getDealsRoomByRoomId;
