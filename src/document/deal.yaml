@@ -36,13 +36,13 @@ paths:
               properties:
                 User_id:
                   type: string
-                  description: ID of the user associated with the deal
+                  example: 613abc123def456789000000
                 Hotel_id:
                   type: string
-                  description: ID of the hotel associated with the deal
+                  example: 623def456abc789012300000
                 RoomType_id:
                   type: string
-                  description: ID of the rom type associated with the deal
+                  example: 634efg567hij890123400000
                 status:
                   type: string
                   description: Status of the deal
