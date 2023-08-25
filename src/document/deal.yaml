@@ -20,18 +20,46 @@ paths:
               example: []
 
     post:
-      tags: 
+      tags:
         - Deal
       summary: Create a new deal
-      consumes:
-        - application/json
-      parameters:
-        - in: body
-          name: deal
-          description: The deal to create
-          required: true
-          schema:
-            $ref: '#/definitions/DealInput'
+      description: Create a new hotel profile.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Deal' # Reference to the Hotel schema
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                User_id:
+                  type: string
+                  description: ID of the user associated with the deal
+                Hotel_id:
+                  type: string
+                  description: ID of the hotel associated with the deal
+                RoomType_id:
+                  type: string
+                  description: ID of the rom type associated with the deal
+                status:
+                  type: string
+                  description: Status of the deal
+                  enum:
+                    - booking
+                    - purchase
+                    - cancelled
+                    - active
+                    - finished
+                checkIn:
+                  type: string
+                  format: date-time
+                  description: Check-in date for the deal
+                checkOut:
+                  type: string
+                  format: date-time
+                  description: Check-out date for the deal
       responses:
         '200':
           description: Deal created successfully
@@ -46,9 +74,6 @@ components:
         User_id:
           type: string
           description: ID of the user associated with the deal
-        Hotel_id:
-          type: string
-          description: ID of the hotel associated with the deal          
         RoomType_id:
           type: string
           description: ID of the room type associated with the deal
@@ -71,7 +96,6 @@ components:
           description: Check-out date for the deal
       example:
         User_id: 603f650a325e8e001c93af46
-        Hotel_id: 623def456abc789012300000
         RoomType_id: 603f650a325e8e001c93af47
         status: active
         checkIn: '2023-08-23T14:00:00Z'
@@ -81,34 +105,3 @@ components:
     BearerAuth:
       type: http
       scheme: bearer
-
-definitions:
-  DealInput:
-    type: object
-    properties:
-      User_id:
-        type: string
-        example: 613abc123def456789000000
-      Hotel_id:
-        type: string
-        example: 623def456abc789012300000
-      RoomType_id:
-        type: string
-        example: 634efg567hij890123400000
-      status:
-        type: string
-        enum:
-          - booking
-          - purchase
-          - cancelled
-          - active
-          - finished
-        example: booking
-      checkIn:
-        type: string
-        format: date-time
-        example: '2023-08-25T12:00:00Z'
-      checkOut:
-        type: string
-        format: date-time
-        example: '2023-08-28T12:00:00Z'

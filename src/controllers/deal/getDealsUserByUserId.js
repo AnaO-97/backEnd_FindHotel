@@ -1,25 +1,59 @@
-const Deal = require('../../models/dealModel');
+const mongoose = require('mongoose')
+const { Deal } = require("../../models");
 
 const getDealsUserByUserId = async (req, res) => {
     const id = req.params.userId
     const dealUser = await Deal.aggregate([
-        { $match: { User_id: mongoose.Types.ObjectId(id) } },
+        // Match deals based on User_id
+        {
+            $match: { User_id: mongoose.Types.ObjectId(id) }
+        },
+        // Lookup user information
         {
             $lookup: {
                 from: 'users',
                 localField: 'User_id',
                 foreignField: '_id',
-                as: 'user',
-            },
+                as: 'user'
+            }
         },
-        {// Ordenar por marca de tiempo (timestamp) descendente
-            $sort: {
-                createdAt: -1,
-            },
-        },
+        // Sort by createdAt timestamp in descending order
         {
-            $unwind: '$user',
+            $sort: {
+                createdAt: -1
+            }
         },
+        // Unwind user array
+        {
+            $unwind: '$user'
+        },
+        // Lookup hotel information
+        {
+            $lookup: {
+                from: 'hotels',
+                localField: 'user.hotel.roomType.Hotel_id',
+                foreignField: '_id',
+                as: 'user.hotel'
+            }
+        },
+        // Unwind hotel array
+        {
+            $unwind: '$user.hotel'
+        },
+        // Lookup room type information
+        {
+            $lookup: {
+                from: 'roomtypes',
+                localField: 'RoomType_id',
+                foreignField: '_id',
+                as: 'user.hotel.roomType'
+            }
+        },
+        // Unwind room type array
+        {
+            $unwind: '$user.hotel.roomType'
+        },
+        // Project selected fields for user, hotel, and room type
         {
             $project: {
                 'user._id': 1,
@@ -28,51 +62,19 @@ const getDealsUserByUserId = async (req, res) => {
                 'user.email': 1,
                 'user.country': 1,
                 'user.city': 1,
-            },
-        },
-        {
-            $lookup: {
-                from: 'hotels',
-                localField: 'user.hotel.roomType.Hotel_id',
-                foreignField: '_id',
-                as: 'user.hotel',
-            },
-        },
-        {
-            $unwind: '$user.hotel',
-        },
-        {
-            $project: {
-                'user': 1,
                 'user.hotel._id': 1,
                 'user.hotel.name': 1,
                 'user.hotel.rating': 1,
                 'user.hotel.category': 1,
                 'user.hotel.phone': 1,
                 'user.hotel.address': 1,
-            },
-        },
-        {
-            $lookup: {
-                from: 'roomtypes',
-                localField: 'RoomType_id',
-                foreignField: '_id',
-                as: 'user.hotel.roomType',
-            },
-        },
-        {
-            $unwind: '$user.hotel.roomType',
-        },
-        {
-            $project: {
-                'user': 1,
                 'user.hotel.roomType._id': 1,
                 'user.hotel.roomType.name': 1,
                 'user.hotel.roomType.price': 1,
                 'user.hotel.roomType.stock': 1,
-                'user.hotel.roomType.services': 1,
-            },
-        },
+                'user.hotel.roomType.services': 1
+            }
+        }
     ]);
 };
 

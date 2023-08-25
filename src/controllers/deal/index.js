@@ -18,7 +18,7 @@ module.exports = {
     getDealsHotelByCheckIn,
     getDealsHotelByCheckOut,
     getDealsHotelByHotelId,
-    getDealsRoomByRoomId,    
+    getDealsRoomByRoomId,
     getDealsUserByUserId,
     createDealByUserId,
     updateDealsByStatus,
