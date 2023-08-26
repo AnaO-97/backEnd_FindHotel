@@ -41,8 +41,8 @@ paths:
       summary: Get user by ID
       description: Retrieve user information by user ID.
       parameters:
-        - name: userId
-          in: path
+        - in: path
+          name: userId
           description: ID of the user
           required: true
           schema:

@@ -41,14 +41,33 @@ paths:
             schema:
               type: object
               properties:
+                User_id:
+                  type: string
+                  description: Hotel administrator user ID
                 name:
                   type: string
                   description: Name of the hotel
+                country:
+                  type: string
+                  description: Country where the hotel is located
+                state:
+                  type: string
+                  description: State where the hotel is located
+                address:
+                  type: string
+                  description: Address where the hotel is located
+                phone:
+                  type: number
+                  description: Phone number of hotel contact
+                website:
+                  type: string
+                  format: url
+                  description: Website of the hotel
                 email:
                   type: string
                   format: email
                   description: Email address of the hotel
-                images:
+                image:
                   type: array
                   description: List of images related to the hotel
                   items:
@@ -71,15 +90,6 @@ paths:
                       - dinner
                       - bar
                   default: ['no services']
-                country:
-                  type: string
-                  description: Country where the hotel is located
-                state:
-                  type: string
-                  description: State where the hotel is located
-                address:
-                  type: string
-                  description: Address of the hotel
                 room:
                   type: object
                   properties:
@@ -113,14 +123,102 @@ paths:
         '500':
           description: Internal server error
 
+  /hotel/{search}:
+    get:
+      tags:
+        - Hotel
+      summary: Get available hotels for booking
+      description: Retrieve a list of available hotels based on search criteria and check-in date.
+      parameters:
+        - in: path
+          name: search
+          schema:
+            type: string
+          required: true
+          description: Search keyword for hotel name, country, or city.
+        - in: query
+          name: checkInDate
+          schema:
+            type: string
+            format: date
+          description: Check-in date (optional). If not provided, defaults to the current date.
+      responses:
+        '200':
+          description: List of available hotels.
+          content:
+            application/json:
+              example:
+                - _id: 64ea24aab659c7e9e16bec41
+                  name: Decameron Hotel
+                  country: Colombia
+                  state: Cartagena
+                  email: decameron@gmail.com.us
+                  website: decameron.com.co
+                  phone: 57 719 864 188
+                  address: Kr 20 16-50
+                  category: 4
+                  rating: 8.5
+                  image:
+                    - id: dcb6bdef-883e-44b0-b0ac-c2a7a633583a
+                      src: https://example.com/dcb6bdef-883e-44b0-b0ac-c2a7a633583a.jpg
+                      type: .jpg
+                    - id: 2309bc5d-c443-4f33-b711-db07b32fe663
+                      src: https://example.com/2309bc5d-c443-4f33-b711-db07b32fe663.jpg
+                      type: .jpg
+                  freeRooms:
+                    - _id: 64ea25316d3ae8d87e497a45
+                      name: Standard Room
+                      free: 8
+                      promisesOfRelease: 2
+                      totalFree: 10
+                    - _id: 64ea253d1f0e923184b21126
+                      name: VIP
+                      free: 10
+                      promisesOfRelease: 6
+                      totalFree: 16
+        '404':
+          description: No available hotels found.
+          content:
+            application/json:
+              example:
+                message: There are no hotels available.
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              example:
+                error: Invalid request parameters.
+
 components:
   schemas:
     Hotel:
       type: object
       properties:
+        _id:
+          type: string
+          description: Mongo ID when creating hotel record
+        User_id:
+          type: string
+          description: Hotel administrator user ID
         name:
           type: string
           description: Name of the hotel
+        country:
+          type: string
+          description: Country where the hotel is located
+        state:
+          type: string
+          description: State where the hotel is located
+        address:
+          type: string
+          description: Address of the hotel
+        phone:
+          type: number
+          description: Phone number of hotel contact
+        website:
+          type: string
+          format: url
+          description: Website of the hotel
         email:
           type: string
           format: email
@@ -144,6 +242,9 @@ components:
         category:
           type: number
           description: Category of the hotel
+        rating:
+          type: number
+          description: Rating of the hotel in the FindHotel website
         services:
           type: array
           description: List of services offered by the hotel
@@ -156,15 +257,6 @@ components:
               - dinner
               - bar
           default: ['no services']
-        country:
-          type: string
-          description: Country where the hotel is located
-        state:
-          type: string
-          description: State where the hotel is located
-        address:
-          type: string
-          description: Address of the hotel
         room:
           type: object
           properties:
@@ -186,31 +278,28 @@ components:
         isActive:
           type: boolean
           description: Indicates if the hotel is active
-        createdAt:
-          type: string
-          format: date-time
-          description: Timestamp of when the hotel was created
-        updatedAt:
-          type: string
-          format: date-time
-          description: Timestamp of when the hotel was last updated
       example:
+        _id: '64ea229648743bcdc60e7732'
+        User_id: '64ea22abf577a330319f6425'
         name: Hilton Hotel
-        email: hilton@gmail.com.us
-        images:
-          - id: 1
-            src: https://example.com/image1.jpg
-            type: exterior
-          - id: 2
-            src: https://example.com/image2.jpg
-            type: interior
-        category: 4
-        services:
-          - breakfast
-          - bar
         country: United States
         state: California
         address: 123 Example Street
+        phone: 365 272 5673
+        email: hilton@gmail.com.us
+        website: hotelhilton.com
+        image:
+          - id: b7b78083-8bb5-40f3-8a32-c68efdf9d0d5
+            src: https://example.com/b7b78083-8bb5-40f3-8a32-c68efdf9d0d5.jpg
+            type: .jpg
+          - id: 4b4f1077-d8b5-4e50-a68c-11c8d57bdbd5
+            src: https://example.com/4b4f1077-d8b5-4e50-a68c-11c8d57bdbd5.jpg
+            type: .jpg
+        category: 5
+        rating: 9.5
+        services:
+          - breakfast
+          - bar
         room:
           name: Deluxe Room
           price: 200
@@ -218,5 +307,3 @@ components:
         roomService: true
         wifi: true
         isActive: true
-        createdAt: '2023-08-23T12:34:56Z'
-        updatedAt: '2023-08-23T14:45:32Z'

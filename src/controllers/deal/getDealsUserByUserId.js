@@ -2,11 +2,11 @@ const mongoose = require('mongoose')
 const { Deal } = require("../../models");
 
 const getDealsUserByUserId = async (req, res) => {
-    const id = req.params.userId
+    const { userId } = req.params
     const dealUser = await Deal.aggregate([
         // Match deals based on User_id
         {
-            $match: { User_id: mongoose.Types.ObjectId(id) }
+            $match: { User_id: mongoose.Types.ObjectId(userId) }
         },
         // Lookup user information
         {
