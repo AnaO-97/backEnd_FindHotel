@@ -12,4 +12,3 @@ const createOrderPost = async (req, res) => {
 };
 
 module.exports = createOrderPost;
-
