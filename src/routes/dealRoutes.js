@@ -1,18 +1,17 @@
 const { Router } = require('express');
 const validateDealPost = require('../middlewares/validateDealPost');
-const { 
+const {
     getDealById,
     createDealByUserId,
-    
     getActiveDealsUserById,
     getCanceledDealUserById,
     getDealsHotelByCheckIn,
     getDealsHotelByCheckOut,
     getDealsHotelByHotelId,
-    getDealsRoomByRoomId,    
+    getDealsRoomByRoomId,
     getDealsUserByUserId,
-    
-    updateDealsByStatus} = require('../controllers/deal')
+
+    updateDealsByStatus } = require('../controllers/deal')
 
 const dealRoutes = Router();
 

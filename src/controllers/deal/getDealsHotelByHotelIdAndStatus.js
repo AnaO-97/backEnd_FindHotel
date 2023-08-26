@@ -1,13 +1,17 @@
-const mongoose = require('mongoose')
-const { Deal, Hotel, User, RoomType } = require("../../models");
+const mongoose = require('mongoose');
 
-const getDealsHotelByHotelId = async (req, res) => {
-
+const getDealsHotelByHotelIdAndStatus = async (req, res) => {
     try {
         const { hotelId } = req.params
+        const { status } = req.query
         const dealsHotel =
-            Hotel.aggregate([
-                { $match: { Hotel_id: mongoose.Types.ObjectId(hotelId) } },
+            Deal.aggregate([
+                {
+                    $match: {
+                        Hotel_id: mongoose.Types.ObjectId(hotelId),
+                        status: status
+                    }
+                },
                 {
                     $lookup: {
                         from: 'users',
@@ -31,25 +35,9 @@ const getDealsHotelByHotelId = async (req, res) => {
                     $unwind: '$roomType'
                 },
                 {
-                    $lookup: {
-                        from: 'hotels',
-                        localField: 'Hotel_id',
-                        foreignField: '_id',
-                        as: 'hotel'
-                    }
-                },
-                {
-                    $unwind: '$hotel'
-                },
-                {
                     $project: {
                         _id: 0,
                         hotelInfo: {
-                            name: '$hotel.name',
-                            email: '$hotel.email',
-                            country: '$hotel.country',
-                            city: '$hotel.state',
-                            address: '$hotel.address',
                             room: {
                                 _id: '$roomType._id',
                                 name: '$roomType.name',
@@ -73,12 +61,14 @@ const getDealsHotelByHotelId = async (req, res) => {
                     }
                 }
             ]);
+
         if (dealsHotel.length !== 0) res.status(200).json(dealsHotel)
         else res.status(404).json({ message: 'Deals not found' })
 
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
+
 }
 
-module.exports = getDealsHotelByHotelId
+module.exports = getDealsHotelByHotelIdAndStatus

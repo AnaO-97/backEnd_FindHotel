@@ -10,6 +10,22 @@ const hotelSchema = new Schema({
         type: String,
         required: true,
     },
+    country: {
+        type: String,
+        required: true
+    },
+    state: {
+        type: String,
+        required: true
+    },
+    address: {
+        type: String,
+        required: true,
+    },
+    phone: {
+        type: Number,
+        required: true,
+    },
     email: {
         type: String,
         required: true,
@@ -23,7 +39,13 @@ const hotelSchema = new Schema({
             message: ({ value }) => `${value} it is not a valid mail.`
         }
     },
-    images: {
+    website: {
+        type: String,
+        unique: true,
+        lowercase: true,
+        trim: true,
+    },
+    image: {
         type: [
             {
                 id: { type: String },
@@ -42,23 +64,16 @@ const hotelSchema = new Schema({
         type: Number,
         required: true,
     },
+    rating: {
+        type: Number,
+        required: true,
+        default: 10
+    },
     services: [{
         type: String,
         enum: ['all inclusive', 'breakfast', 'lunch', "dinner", "bar"],
         default: ['no services']
     }],
-    country: {
-        type: String,
-        required: true
-    },
-    state: {
-        type: String,
-        required: true
-    },
-    address: {
-        type: String,
-        required: true,
-    },
     room: {
         name: {
             type: String,

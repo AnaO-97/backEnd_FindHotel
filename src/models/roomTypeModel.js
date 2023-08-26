@@ -26,11 +26,27 @@ const roomTypeSchema = new Schema({
         required: true,
         min: 0,
     },
+    busy: {
+        type: Number,
+        required: true,
+        min: 0,
+        default: 0
+    },
+    free: {
+        type: Number,
+        required: true,
+        min: 0,
+    },
     isActive: {
         type: Boolean,
         required: true
     }
 }, { timestamps: true });
+
+roomTypeSchema.post("save", function () {
+    this.free = this.stock - this.busy;
+    this.save();
+});
 
 const RoomType = model("RoomType", roomTypeSchema)
 module.exports = RoomType;

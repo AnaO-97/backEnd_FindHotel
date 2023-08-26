@@ -5,7 +5,7 @@ info:
 servers:
   - url: https://api.server.test/v1
 paths:
-  /deals:
+  /deal:
     get:
       tags:
         - Deal
@@ -17,8 +17,8 @@ paths:
           description: List of deals retrieved successfully
           content:
             application/json:
-              example: []
-
+              schema:
+                $ref: '#/components/schemas/Deal'
     post:
       tags:
         - Deal
@@ -66,6 +66,67 @@ paths:
         '400':
           description: Invalid input
 
+  /deal/{dealId}:
+    get:
+      tags:
+        - Deal
+      summary: Get one deal by id
+      description: Retrieve a deal by its id.
+      parameters:
+        - in: path
+          name: dealId
+          schema:
+            type: string
+          required: true
+          description: The name of the hotel to retrieve.
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: List of deals retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Deal'
+
+  /deal/{hotelId}:
+    get:
+      tags:
+        - Deal
+      summary: Get deal by hotelId
+      description: Retrieve deals by hotelId.
+      parameters:
+        - in: path
+          name: hotelId
+          schema:
+            type: string
+          required: true
+          description: The ID of the hotel to retrieve deals for.
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: List of deals retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  name: Hotel Example
+                  email: hotel@example.com
+                  users:
+                    - _id: user123
+                      firstName: John
+                      lastName: Doe
+                      email: john@example.com
+                      deal:
+                        checkIn: '2023-08-25T12:00:00Z'
+                        checkOut: '2023-08-30T12:00:00Z'
+                        status: active
+                        room:
+                          name: Deluxe Room
+                          price: 200
+                          stock: 5
 components:
   schemas:
     Deal:
