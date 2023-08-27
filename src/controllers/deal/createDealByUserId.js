@@ -14,13 +14,12 @@ const createDealByUserId = async (req, res) => {
         // console.log("attibutes", attributes);
 
         const newDeal = new Deal(attributes);
-        const deal    = await newDeal.save();
+        const deal = await newDeal.save();
 
         if(deal)
             res.status(200).json(deal);
         else
             res.status(400).json({"message": "Deal not created"});
-
     } catch (error) {
         res.status(400).json({error : error.message})
     }

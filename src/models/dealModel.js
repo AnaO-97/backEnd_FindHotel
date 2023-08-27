@@ -32,7 +32,7 @@ const dealSchema = new mongoose.Schema({
                 if (this.checkOut != null)
                     return value < this.checkOut;
             },
-            message: 'end_Rent must be after checkout.',
+            message: 'checkIn must be before checkOut.',
         },
     },
     checkOut: {
@@ -40,9 +40,10 @@ const dealSchema = new mongoose.Schema({
         required: false,
         validate: {
             validator: function (value) {
-                return value > this.checkIn;
+                if (this.checkIn != null)
+                    return value > this.checkIn;
             },
-            message: 'end_Rent must be after checkout.',
+            message: 'checkOut must be after checkIn.',
         },
     },
 }, {

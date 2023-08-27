@@ -1,6 +1,4 @@
-const User = require("../models/userModel");
-const Hotel= require("../models/hotelModel");
-const RoomType = require("../models/roomTypeModel");
+const { User, Hotel, RoomType } = require("../models");
 
 const validateDealPost = async (req, res, next) =>{
     const post = {
@@ -25,7 +23,6 @@ const validateDealPost = async (req, res, next) =>{
                     .json({"error": `The ID ${key.slice(2,-2)} not found in the database, please check it`})
                 )
             }
-            else null
         }        
     }
     else{
