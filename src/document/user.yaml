@@ -53,7 +53,30 @@ paths:
         '404':
           description: User not found
 
-  /user/register:
+  /user/{email}:
+    get:
+      tags:
+        - User
+      summary: Get user by ID
+      description: Retrieve user information by user ID.
+      parameters:
+        - name: email
+          in: path
+          description: User email
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User registered successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User not found
+
+  /user/signup:
     post:
       tags:
         - User
@@ -62,19 +85,63 @@ paths:
       requestBody:
         required: true
         content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  description: Email address of the user
+                password:
+                  type: string
+                  format: password
+                  description: Password email of the user
           application/json:
             schema:
-              $ref: '#/components/schemas/Login'
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  description: Email address of the user
+                password:
+                  type: string
+                  format: password
+                  description: Password email of the user
       responses:
         '201':
-          description: User register successfully
+          description: User registered successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Login' # Reference to the Hotel schema
+                $ref: '#/components/schemas/SignUpResponse'
         '400':
           description: Bad request
 
+  /user/signin:
+    post:
+      tags:
+        - User
+      summary: User login
+      description: Log in a user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignInRequest'
+      responses:
+        '200':
+          description: User logged in successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignInResponse'
+        '401':
+          description: Unauthorized
+        '400':
+          description: Bad request
 components:
   schemas:
     User:
@@ -122,14 +189,6 @@ components:
             - Inactive
             - Supended
             - Banned
-        createdAt:
-          type: string
-          format: date-time
-          description: Timestamp of when the user account was created
-        updatedAt:
-          type: string
-          format: date-time
-          description: Timestamp of when the user account was last updated
       example:
         firstName: John
         lastName: Doe
@@ -144,30 +203,53 @@ components:
         createdAt: '2023-08-23T12:34:56Z'
         updatedAt: '2023-08-23T14:45:32Z'
 
-    Login:
+    SignUpRequest:
       type: object
-      required:
-        - email
-        - password
       properties:
         email:
           type: string
+          format: email
+          description: Email address of the user
+          example: user@example.com
         password:
           type: string
+          format: password
+          description: Password of the user account.
+          example: mysecretpassword
+      required:
+        - email
+        - password
 
-    Error:
+    SignUpResponse:
       type: object
       properties:
-        code:
-          description: Código de error
-          type: string
-        status:
-          description: httpstatus
-          type: integer
-          format: int32
-        type:
-          type: string
-          description: Tipo de error
         message:
           type: string
-          description: Mensaje de error
+          description: Registration success message
+          example: User registered successfully
+
+    SignInRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          description: Email address of the user
+        password:
+          type: string
+          format: password
+          description: Password of the user account.
+      required:
+        - email
+        - password
+      example:
+        email: findhotel@gmail.com
+        password: mysecretpassword
+
+    SignInResponse:
+      type: object
+      properties:
+        token:
+          type: string
+          description: JWT token for authenticated requests
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...

@@ -37,6 +37,70 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Hotel' # Reference to the Hotel schema
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the hotel
+                email:
+                  type: string
+                  format: email
+                  description: Email address of the hotel
+                images:
+                  type: array
+                  description: List of images related to the hotel
+                  items:
+                    type: string
+                    format: url
+                    description: URL of an image
+                  maxItems: 5
+                category:
+                  type: number
+                  description: Category of the hotel
+                services:
+                  type: array
+                  description: List of services offered by the hotel
+                  items:
+                    type: string
+                    enum:
+                      - all inclusive
+                      - breakfast
+                      - lunch
+                      - dinner
+                      - bar
+                  default: ['no services']
+                country:
+                  type: string
+                  description: Country where the hotel is located
+                state:
+                  type: string
+                  description: State where the hotel is located
+                address:
+                  type: string
+                  description: Address of the hotel
+                room:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      description: Name of the hotel room
+                    price:
+                      type: number
+                      description: Price of the hotel room
+                    stock:
+                      type: number
+                      description: Available stock of the hotel room
+                roomService:
+                  type: boolean
+                  description: Indicates if room service is available
+                wifi:
+                  type: boolean
+                  description: Indicates if WiFi is available
+                isActive:
+                  type: boolean
+                  description: Indicates if the hotel is active
       responses:
         '201':
           description: Hotel created successfully
@@ -46,77 +110,113 @@ paths:
                 $ref: '#/components/schemas/Hotel' # Reference to the Hotel schema
         '400':
           description: Bad request
+        '500':
+          description: Internal server error
 
 components:
   schemas:
-    Image:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-          example: d909dee0-22a5-4df5-a7be-3a1e3d9b65d6
-        src:
-          type: string
-          example: d909dee0-22a5-4df5-a7be-3a1e3d9b65d6.jpg
-        type:
-          type: string
-          example: jpg
-
-    Room:
-      type: object
-      properties:
-        name:
-          type: string
-          example: VIP
-        price:
-          type: number
-          example: 500
-        stock:
-          type: number
-          example: 25
-
     Hotel:
       type: object
       properties:
         name:
           type: string
-          example: Levis Hilton
+          description: Name of the hotel
+        email:
+          type: string
+          format: email
+          description: Email address of the hotel
         images:
           type: array
+          description: List of images related to the hotel
           items:
-            $ref: '#/components/schemas/Image'
+            type: object
+            properties:
+              id:
+                type: string
+                description: ID of the image
+              src:
+                type: string
+                description: URL of the image
+              type:
+                type: string
+                description: Type of the image
+          maxItems: 5
         category:
           type: number
-          example: 5
+          description: Category of the hotel
         services:
           type: array
+          description: List of services offered by the hotel
           items:
             type: string
-            enum: ['all inclusive', 'breakfast', 'lunch', 'dinner', 'bar']
-            example: ['breakfast', 'bar']
+            enum:
+              - all inclusive
+              - breakfast
+              - lunch
+              - dinner
+              - bar
+          default: ['no services']
         country:
           type: string
-          example: Mexico
+          description: Country where the hotel is located
         state:
           type: string
-          example: Jalisco
+          description: State where the hotel is located
         address:
           type: string
-          example: 65901 Turcotte Village Apt. 837
+          description: Address of the hotel
         room:
-          $ref: '#/components/schemas/Room'
+          type: object
+          properties:
+            name:
+              type: string
+              description: Name of the hotel room
+            price:
+              type: number
+              description: Price of the hotel room
+            stock:
+              type: number
+              description: Available stock of the hotel room
         roomService:
           type: boolean
+          description: Indicates if room service is available
         wifi:
           type: boolean
+          description: Indicates if WiFi is available
         isActive:
           type: boolean
-          default: true
-      required:
-        - name
-        - category
-        - country
-        - state
-        - address
-        - room
+          description: Indicates if the hotel is active
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp of when the hotel was created
+        updatedAt:
+          type: string
+          format: date-time
+          description: Timestamp of when the hotel was last updated
+      example:
+        name: Hilton Hotel
+        email: hilton@gmail.com.us
+        images:
+          - id: 1
+            src: https://example.com/image1.jpg
+            type: exterior
+          - id: 2
+            src: https://example.com/image2.jpg
+            type: interior
+        category: 4
+        services:
+          - breakfast
+          - bar
+        country: United States
+        state: California
+        address: 123 Example Street
+        room:
+          name: Deluxe Room
+          price: 200
+          stock: 10
+        roomService: true
+        wifi: true
+        isActive: true
+        createdAt: '2023-08-23T12:34:56Z'
+        updatedAt: '2023-08-23T14:45:32Z'

@@ -1,5 +1,5 @@
-const firebase = require("../../config");
-const mailTransport = require("../../config/nodemailerConfig.js");
+const { firebase } = require("../../config");
+const { mailTransport } = require("../../config");
 const { sendVerifyMail, generateTokenVerifyMail } = require("../../services")
 const User = require("../../models/userModel.js");
 

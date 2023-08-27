@@ -7,11 +7,6 @@ const roomTypeSchema = new Schema({
         ref: 'User',
         // required: true
     },
-    Hotel_id: {
-        type: Schema.Types.ObjectId,
-        ref: "Hotel",
-        // required: true
-    },
     name: {
         type: String,
         required: true

@@ -20,6 +20,7 @@ const dealSchema = new Schema({
     status: {
         type: String,
         enum: ["booking", "purchase", "cancelled", "active", "finished"],
+        default: "booking",
         required: true
     },
     checkIn: {
@@ -30,7 +31,7 @@ const dealSchema = new Schema({
                 if (this.checkOut != null)
                     return value < this.checkOut;
             },
-            message: 'end_Rent must be after checkout.',
+            message: 'CheckIn must be before CheckOut.',
         },
     },
     checkOut: {
@@ -38,9 +39,10 @@ const dealSchema = new Schema({
         required: false,
         validate: {
             validator: function (value) {
-                return value > this.checkIn;
+                if (this.checkIn != null)
+                    return value > this.checkIn;
             },
-            message: 'end_Rent must be after checkout.',
+            message: 'CheckOut must be after CheckIn.',
         },
     },
 }, {
@@ -65,6 +67,8 @@ schedule.scheduleJob('0 0 * * *', async () => {
         await deal.save();
     }
 });
+
+
 
 const Deal = model("Deal", dealSchema);
 module.exports = Deal; 
