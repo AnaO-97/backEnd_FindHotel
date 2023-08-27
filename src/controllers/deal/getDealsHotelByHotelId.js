@@ -1,6 +1,7 @@
 const { Deal } = require("../../models");
 
-const getDealsRoomByRoomId = () => {
+const getDealsHotelByHotelId = () => {
+
     try {
 
     } catch (error) {
@@ -8,4 +9,4 @@ const getDealsRoomByRoomId = () => {
     }
 }
 
-export default getDealsRoomByRoomId
+module.exports = getDealsHotelByHotelId

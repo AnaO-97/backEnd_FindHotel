@@ -1,15 +1,15 @@
 const { Router } = require('express');
 const validateDealPost = require('../middlewares/validateDealPost');
-const validateDealPut  = require('../middlewares/validateDealPut'); 
-const { 
+const validateDealPut = require('../middlewares/validateDealPut');
+const {
     //getDealById,
     createDealByUserId,
     updateDealsById,
     getDealsByUserId,
-    getDealsByHotelId,   
+    getDealsByHotelId,
     getDealsFilterByHotelId,
 
-getDealsRoomByRoomId } = require('../controllers/deal')
+    getDealsRoomByRoomId } = require('../controllers/deal')
 
 const dealRoutes = Router();
 
@@ -23,13 +23,13 @@ dealRoutes.post('/', createDealByUserId);
 
 dealRoutes.get('/user/:userId', getDealsByUserId);
 dealRoutes.get('/hotel/:hotelId',
-    (req, res)=>{
-        const [ [ , queryValue ] ] = Object.entries(req.query);
+    (req, res) => {
+        const [[, queryValue]] = Object.entries(req.query);
         // console.log(queryAtt); console.log(queryValue);
-        
-        ( queryValue !==  null && queryValue !== undefined && queryValue !== "" )
-        ? getDealsFilterByHotelId(req, res)        
-        : getDealsByHotelId(req, res)
+
+        (queryValue !== null && queryValue !== undefined && queryValue !== "")
+            ? getDealsFilterByHotelId(req, res)
+            : getDealsByHotelId(req, res)
     }
 );
 

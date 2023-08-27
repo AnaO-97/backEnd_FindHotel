@@ -18,13 +18,13 @@ const createDealByUserId = require('./createDealByUserId');
 
 module.exports = {
     getDealById,
-    
+
     getDealsByHotelId,
     getDealsFilterByHotelId,
-    
-    getDealsRoomByRoomId,    
+
+    getDealsRoomByRoomId,
     getDealsByUserId,
-    
+
     createDealByUserId,
     // updateDealsByStatus,
     updateDealsById

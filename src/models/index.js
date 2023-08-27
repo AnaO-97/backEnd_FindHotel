@@ -8,7 +8,6 @@ const TrendingHotels = require("./trendingHotelsModel");
 const TrendingState = require("./trendingStatesModel");
 const User = require("./userModel");
 
-
 module.exports = {
     Countries,
     Deal,
