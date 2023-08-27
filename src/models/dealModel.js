@@ -39,7 +39,8 @@ const dealSchema = new Schema({
         required: false,
         validate: {
             validator: function (value) {
-                return value > this.checkIn;
+                if (this.checkIn != null)
+                    return value > this.checkIn;
             },
             message: 'CheckOut must be after CheckIn.',
         },
