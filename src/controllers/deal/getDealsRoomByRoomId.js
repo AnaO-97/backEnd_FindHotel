@@ -9,3 +9,4 @@ const getDealsRoomByRoomId = () => {
 }
 
 module.exports = getDealsRoomByRoomId
+

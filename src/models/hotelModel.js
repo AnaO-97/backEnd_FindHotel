@@ -1,34 +1,35 @@
 const { Schema, model } = require("mongoose");
 
 const hotelSchema = new Schema({
-    User_id: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-        require: true
-    },
+    // User_id: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'User',
+    //     require: true
+    // },
     name: {
         type: String,
         required: true,
     },
-    email: {
-        type: String,
-        required: true,
-        unique: true,
-        lowercase: true,
-        trim: true,
-        validate: {
-            validator: (value) => {
-                return /^((?!^[._%+-])(?![._%+-]{2,})[a-zñ0-9._%+-]){5,29}[a-zñ0-9]+@(([\w-]+)+\.+[\w-]{2,4})$/.test(value);
-            },
-            message: ({ value }) => `${value} it is not a valid mail.`
-        }
-    },
-    images: {
+    // email: {
+    //     type: String,
+    //     required: true,
+    //     unique: true,
+    //     lowercase: true,
+    //     trim: true,
+    //     validate: {
+    //         validator: (value) => {
+    //             return /^((?!^[._%+-])(?![._%+-]{2,})[a-zñ0-9._%+-]){5,29}[a-zñ0-9]+@(([\w-]+)+\.+[\w-]{2,4})$/.test(value);
+    //         },
+    //         message: ({ value }) => `${value} it is not a valid mail.`
+    //     }
+    // },
+    image: {
         type: [
             {
                 id: { type: String },
                 src: { type: String },
-                type: { type: String }
+                typeImage: { type: String },
+                size: {type: Number}
             }
         ],
         validate: {
@@ -49,11 +50,11 @@ const hotelSchema = new Schema({
     }],
     country: {
         type: String,
-        required: true
+        // required: true
     },
     state: {
         type: String,
-        required: true
+        // required: true
     },
     address: {
         type: String,
