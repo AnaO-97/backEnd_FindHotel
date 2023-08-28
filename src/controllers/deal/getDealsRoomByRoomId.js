@@ -8,4 +8,4 @@ const getDealsRoomByRoomId = () => {
     }
 }
 
-export default getDealsRoomByRoomId
+module.export = getDealsRoomByRoomId;
