@@ -11,7 +11,6 @@ const getDealsByUserId = require('./getDealsByUserId')
 const getDealsRoomByRoomId = require('./getDealsRoomByRoomId')
 
 //-------------------- Deal'S METHOS -------------------------
-// const updateDealsByStatus = require('./updateDealsByStatus')
 const updateDealsById = require('./updateDealsById');
 const createDealByUserId = require('./createDealByUserId');
 
@@ -26,6 +25,5 @@ module.exports = {
     getDealsByUserId,
 
     createDealByUserId,
-    // updateDealsByStatus,
     updateDealsById
 }

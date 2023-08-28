@@ -8,4 +8,5 @@ const getDealsRoomByRoomId = () => {
     }
 }
 
-module.export = getDealsRoomByRoomId;
+module.exports = getDealsRoomByRoomId
+

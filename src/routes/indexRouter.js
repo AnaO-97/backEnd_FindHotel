@@ -5,6 +5,7 @@ const dealRoutes = require("./dealRoutes");
 const userRoutes = require("./userRoutes");
 const bulkRoutes = require("./bulkRoutes.js");
 const hotelRoutes = require("./hotelRoutes");
+const roomTypeRoutes = require("./roomTypeRoutes");
 const adminRoutes = require("./adminRoutes.js");
 const destinationRoutes = require("./destinationRoutes.js");
 const trendingRoutes = require("./trendingRoutes");
@@ -19,6 +20,7 @@ indexRouter.use("/hotel", hotelRoutes);
 indexRouter.use("/destination", destinationRoutes);
 indexRouter.use("/trending", trendingRoutes);
 indexRouter.use("/payment", paymentRoutes);
+indexRouter.use("/roomType", roomTypeRoutes);
 indexRouter.use("/hotel-room", hotelRoomRoutes);
 // indexRouter.use("/admin")
 indexRouter.use("/bulk", bulkRoutes);
