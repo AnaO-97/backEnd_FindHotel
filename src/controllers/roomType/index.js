@@ -1,15 +1,9 @@
-const assignRoomTypeToHotel = require('./assignRoomTypeToHotel')
-const createRoomType = require('./createRoomType')
-const getRoomTypesByHotel = require('./getRoomTypesByHotel')
-const getRoomTypesByUserId = require('./getRoomTypesByUserId')
-const inactiveRoomTypeById = require('./inactiveRoomTypeById')
-const updateRoomTypeById = require('./updateRoomTypeById')
+const control = {};
 
-module.exports = {
-    assignRoomTypeToHotel,
-    createRoomType,
-    getRoomTypesByHotel,
-    getRoomTypesByUserId,
-    inactiveRoomTypeById,
-    updateRoomTypeById,
-}
+control.updateRoomTypeById     = require('./updateRoomTypeById')
+control.getRoomTypesByUserId   = require('./getRoomTypesByUserId')
+control.getRoomTypesByHotelId  = require('./getRoomTypesByHotelId')
+control.assignRoomTypeToHotel  = require('./assignRoomTypeToHotel')
+control.createRoomTypeByUserId = require('./createRoomTypeByUserId')
+
+module.exports = control;

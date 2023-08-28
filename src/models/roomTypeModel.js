@@ -28,7 +28,7 @@ const roomTypeSchema = new Schema({
     },
     isActive: {
         type: Boolean,
-        required: true
+        // required: true
     }
 }, { timestamps: true });
 

@@ -2,4 +2,4 @@ const assignRoomTypeToHotel = () => {
 
 }
 
-moduler.exports = assignRoomTypeToHotel
+module.exports = assignRoomTypeToHotel

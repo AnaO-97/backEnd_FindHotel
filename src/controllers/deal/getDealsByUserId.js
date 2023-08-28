@@ -104,3 +104,22 @@ const getDealsByUserId = async (req, res) => {
 };
 
 module.exports = getDealsByUserId;
+
+
+// 'user._id': 1,
+// 'user.firstName': 1,
+// 'user.lastName': 1,
+// 'user.email': 1,
+// 'user.country': 1,
+// 'user.city': 1,
+// 'user.hotel._id': 1,
+// 'user.hotel.name': 1,
+// 'user.hotel.rating': 1,
+// 'user.hotel.category': 1,
+// 'user.hotel.phone': 1,
+// 'user.hotel.address': 1,
+// 'user.hotel.roomType._id': 1,
+// 'user.hotel.roomType.name': 1,
+// 'user.hotel.roomType.price': 1,
+// 'user.hotel.roomType.stock': 1,
+// 'user.hotel.roomType.services': 1

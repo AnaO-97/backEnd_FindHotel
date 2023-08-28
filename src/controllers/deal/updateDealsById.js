@@ -1,4 +1,4 @@
-const { Deal } = require("../../models");
+const { Deal } = require("../../models/index");
 
 // {
 // 	"User_id"     : "63e825d14bd146895d387",
