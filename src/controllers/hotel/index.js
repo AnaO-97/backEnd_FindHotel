@@ -7,6 +7,7 @@ const getHotelsByCountry = require('./getHotelsByCountry');
 const getHotelsByDestination = require('./getHotelsByDestination');
 const getHotelsByState = require('./getHotelsByState');
 const putHotels = require('./putHotels');
+const hotelCreate = require('./hotelCreate');
 
 module.exports = {
     deleteHotel,
@@ -17,5 +18,6 @@ module.exports = {
     getHotelsByCountry,
     getHotelsByDestination,
     getHotelsByState,
-    putHotels
+    putHotels,
+    hotelCreate
 }
