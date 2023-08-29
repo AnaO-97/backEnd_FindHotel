@@ -28,7 +28,8 @@ userRoutes.post("/signup", userSignUp, (req, res, next) => {
 },
     (req, res) => {
         userAuthSignUp(req, res);
-    })
+    }
+    )
 
 userRoutes.get("/active/:userActive", userActivate, (req, res, next) => {
     const errors = validationResult(req.params);

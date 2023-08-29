@@ -1,12 +1,20 @@
-const HotelRoom = require("../../models/hotelModel");
+const { HotelRoom } = require("../../models/index");
 
 const createHotelRoom = async (req, res) => {
-    try {
-        const { User_id, Hotel_id, roomType_id } = req.body;
-        const newHotelRoom = await HotelRoom(User_id, Hotel_id, roomType_id);
-        const hotelRoom = newHotelRoom.save();
+    try {        
+        const atts = {
+            User_id   : req.body.User_id, 
+            Hotel_id  : req.body.Hotel_id, 
+            RoomType_id : req.body.RoomType_id,
+        }
 
-        if (hotelRoom) return res.status(200).json(hotelRoom);
+        const newHotelRoom = new HotelRoom(atts);
+        const hotelRooms = await newHotelRoom.save();
+
+        if (hotelRooms) 
+            res.status(200).json(hotelRooms);
+        else
+            res.status(400).json({ "error": "HotelRomm not created" });
 
     } catch (error) {
         res.status(404).json({ error: error.message });

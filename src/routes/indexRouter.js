@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const { JWT_ROUTES_KEY } = process.env;
 const { Router } = require("express");
 const dealRoutes = require("./dealRoutes");
 const userRoutes = require("./userRoutes");
@@ -21,14 +20,14 @@ indexRouter.use("/destination", destinationRoutes);
 indexRouter.use("/trending", trendingRoutes);
 indexRouter.use("/payment", paymentRoutes);
 indexRouter.use("/roomType", roomTypeRoutes);
-indexRouter.use("/hotel-room", hotelRoomRoutes);
+indexRouter.use("/hotelRoom", hotelRoomRoutes);
 // indexRouter.use("/admin")
 indexRouter.use("/bulk", bulkRoutes);
 indexRouter.use("/deals", dealRoutes)
 
 indexRouter.post(
-    "/generarToken", 
-    (req, res)=>{
+    "/generarToken",
+    (req, res) => {
         try {
             const userLogin = {
                 name: "Ana",
@@ -37,20 +36,20 @@ indexRouter.post(
 
             // console.log("JWT_ROUTES_KEY",JWT_ROUTES_KEY);
 
-            jwt.sign({user: userLogin}, "HenryProyectoFinalFindHotel",
+            jwt.sign({ user: userLogin }, "HenryProyectoFinalFindHotel",
                 (err, tokenRoutes) => {
                     console.log("error: ", err)
                     console.log("TOKEN: ", tokenRoutes)
 
                     if (err !== null) {
-                        throw new Error (err)
+                        throw new Error(err)
                     }
-                    else{
-                        res.json({"tokenRoutes": tokenRoutes})
+                    else {
+                        res.json({ "tokenRoutes": tokenRoutes })
                     }
                 }
             )
-        } 
+        }
         catch (error) {
             res.status(404).json({ error: error.message });
         }
@@ -58,15 +57,15 @@ indexRouter.post(
 );
 
 indexRouter.post(
-    "/pruebaToken", 
-    validateTokenJWT, 
-    (req, res)=>{
+    "/pruebaToken",
+    validateTokenJWT,
+    (req, res) => {
         try {
             res.send({
                 "Token Validado para el user": "bien",
                 "userToken": req.tokenRoutes,
                 "user": req.userLogin,
-        })
+            })
         } catch (error) {
             res.status(404).json({ error: error.message });
         }

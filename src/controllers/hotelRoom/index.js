@@ -1,5 +1,7 @@
-const createHotelRoom = require("./createHotelRoom");
+const controller = {};
 
-module.exports = {
-    createHotelRoom,
-};
+controller.createHotelRoom      = require("./createHotelRoom");
+controller.getHotelRoomByUserId = require("./getHotelRoomByUserId");
+controller.getHotelRoomByHotelId= require("./getHotelRoomByHotelId");
+
+module.exports = controller;

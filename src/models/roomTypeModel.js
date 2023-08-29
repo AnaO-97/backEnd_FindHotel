@@ -11,7 +11,7 @@ const roomTypeSchema = new Schema({
         type: String,
         required: true
     },
-    roomServices: [{
+    services: [{
         type: String,
         enum: ["no services", "jacuzzi", "room service", "fridge", "bar", "heater", "air-conditioning"],
         default: ["no services"],
