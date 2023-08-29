@@ -1,12 +1,12 @@
 const { RoomType } = require("../../models/index");
 
 // {
-    // 	"name"  : "",
-    // 	"price" : "", 
-    // 	"stock" : "",
-    //  "isActive" : true/false
-    // 	"User_id"  : "",
-    // 	"roomServices" : ["no services", "jacuzzi", "room service", "fridge", "bar", "heater", "air-conditioning"],
+// 	"name"  : "",
+// 	"price" : "", 
+// 	"stock" : "",
+//  "isActive" : true/false
+// 	"User_id"  : "",
+// 	"roomServices" : ["no services", "jacuzzi", "room service", "fridge", "bar", "heater", "air-conditioning"],
 // }
 
 const updateRoomTypeById = async (req, res) => {
@@ -17,7 +17,7 @@ const updateRoomTypeById = async (req, res) => {
 
         const roomTypeBefore = await (RoomType.findById(roomTypeId));
 
-        attributes.forEach(att => {  
+        attributes.forEach(att => {
             roomTypeBefore[att[0]] = att[1];
         });
         const roomTypeUpdated = await roomTypeBefore.save();
