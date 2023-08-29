@@ -24,7 +24,7 @@ const createRoomTypeByUserId = async (req, res) => {
                 if (roomType)
                     res.status(200).json(roomType);
                 else
-                    res.status(400).json({ "message": "RoomType not created" });
+                    res.status(400).json({ "error": "RoomType not created" });
             }
             else{
                 res.status(404).json({"error":"User not found with provided ID, please check it"})

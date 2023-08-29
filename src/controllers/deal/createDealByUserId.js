@@ -19,7 +19,7 @@ const createDealByUserId = async (req, res) => {
         if (deal)
             res.status(200).json(deal);
         else
-            res.status(400).json({ "message": "Deal not created" });
+            res.status(400).json({ "error": "Deal not created" });
     } catch (error) {
         res.status(400).json({ error: error.message })
     }

@@ -22,7 +22,7 @@ const getRoomTypesById =  async(id) => {
                 'price': 1,
                 'stock':1,
                 'isActive':1,
-                'roomServices': 1,        
+                'services': 1,        
 
                 'user._id'  : 1,
                 'user.role' : 1,
@@ -42,9 +42,11 @@ const getRoomTypesByHotelId = async (req,res ) => {
             
         if(mongoose.isValidObjectId(hotelId)){            
             const hotel = await Hotel.findById(hotelId);          
-
+            
             if(hotel){
                 const userId = hotel.User_id;                
+                console.log("userId-controller", userId);
+                
                 const roomTypesFound = await getRoomTypesById(userId);
                 
                 if(roomTypesFound.length>0)
@@ -52,8 +54,8 @@ const getRoomTypesByHotelId = async (req,res ) => {
                 else
                     res.status(202).json({
                         "Hotel": hotel.name,
-                        "id   ": id,
-                        "message": "There are no deals"
+                        "id   ": hotelId,
+                        "message": "There are no RoomTypes"
                     });
             }
             else{

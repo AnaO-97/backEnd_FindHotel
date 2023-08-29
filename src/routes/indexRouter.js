@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const { JWT_ROUTES_KEY } = process.env;
 const { Router } = require("express");
 const dealRoutes = require("./dealRoutes");
 const userRoutes = require("./userRoutes");
@@ -21,7 +20,7 @@ indexRouter.use("/destination", destinationRoutes);
 indexRouter.use("/trending", trendingRoutes);
 indexRouter.use("/payment", paymentRoutes);
 indexRouter.use("/roomType", roomTypeRoutes);
-indexRouter.use("/hotel-room", hotelRoomRoutes);
+indexRouter.use("/hotelRoom", hotelRoomRoutes);
 // indexRouter.use("/admin")
 indexRouter.use("/bulk", bulkRoutes);
 indexRouter.use("/deals", dealRoutes)

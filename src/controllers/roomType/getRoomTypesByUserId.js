@@ -5,17 +5,17 @@ const getRoomTypesById =  async(id) => {
     const roomTypesFound = await RoomType.aggregate([
         { $match: { User_id: new mongoose.Types.ObjectId(id) } },
         //--------------------**User**--------------------
-        {
-            $lookup: {
-                from: 'users',
-                localField: 'User_id',
-                foreignField: '_id',
-                as: 'user',
-            },
-        },
-        {
-            $unwind: '$user',
-        },
+        // {
+        //     $lookup: {
+        //         from: 'users',
+        //         localField: 'User_id',
+        //         foreignField: '_id',
+        //         as: 'user',
+        //     },
+        // },
+        // {
+        //     $unwind: '$user',
+        // },
         //--------------------**project**--------------------
         {
             $project: {
@@ -23,15 +23,15 @@ const getRoomTypesById =  async(id) => {
                 'price' : 1,
                 'stock' : 1,
                 'isActive'     : 1,
-                'roomServices' : 1,
+                'services' : 1,
 
-                'user._id'  : 1,
-                'user.role' : 1,
-                'user.email': 1,
+                // 'user._id'  : 1,
+                // 'user.role' : 1,
+                // 'user.email': 1,
                 // 'user.firstName' : 1,
                 // 'user.lastName' : 1,
             }
-        }
+        },
     ]); 
     
     return roomTypesFound;
@@ -54,7 +54,7 @@ const getRoomTypesByUserId = async (req,res ) => {
                         // "User" : ${user.firtsName} + ${user.lastName},
                         "User" : user.email,
                         "id  " : id,
-                        "message" : "There are no deals"
+                        "message" : "There are no RoomTypes"
                     });
             }
             else{

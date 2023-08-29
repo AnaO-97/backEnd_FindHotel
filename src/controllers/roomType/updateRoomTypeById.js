@@ -17,7 +17,7 @@ const updateRoomTypeById = async (req, res) => {
 
         const roomTypeBefore = await (RoomType.findById(roomTypeId));
 
-        attributes.forEach(att => {
+        attributes.forEach(att => {  
             roomTypeBefore[att[0]] = att[1];
         });
         const roomTypeUpdated = await roomTypeBefore.save();
@@ -25,7 +25,7 @@ const updateRoomTypeById = async (req, res) => {
         if (roomTypeUpdated)
             res.status(200).json(roomTypeUpdated)
         else
-            res.status(400).json({ "message": "The deal was not found with the supplied ID, please check it" })
+            res.status(400).json({ "message": "The roomType was not found with the supplied ID, please check it" })
 
     } catch (error) {
         res.status(400).json({ error: error.message })
