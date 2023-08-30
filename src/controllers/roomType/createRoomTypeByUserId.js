@@ -12,6 +12,7 @@ const createRoomTypeByUserId = async (req, res) => {
                     price: req.body.price,
                     stock: req.body.stock,
                     User_id: req.params.userId,
+                    isActive: true,
                     roomServices: req.body.roomServices,
                 }
 
