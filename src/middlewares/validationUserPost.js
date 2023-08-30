@@ -2,8 +2,7 @@ const validationUserPost = async (req, res, next) => {
     try {
         const attributes = Object.keys(req.body);
 
-        const atts_UserSchema = ["firstName", "lastName", "age", "email", "password", "phone", 
-               "country", "state", "role", "status" ];
+        const atts_UserSchema = ["firstName", "lastName", "email"];
 
         atts_UserSchema.forEach(att => {
             if(!attributes.includes(att))
