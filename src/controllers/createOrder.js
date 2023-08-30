@@ -1,23 +1,27 @@
+require('dotenv').config();
+const { TOKEN_MP } = process.env
 const mercadopago = require('mercadopago');
+const Hotel = require("../models/hotelModel");
+const RoomType = require("../models/roomTypeModel");
+const Deal = require("../models/dealModel");
 
-const createOrder = async (attributes) => {
+const createOrder = async ({ User_id, Hotel_id, RoomType_id, checkIn, checkOut, quantity }) => {
 
-    mercadopago.configure({
-        // sandbox: true,
-        access_token: 'APP_USR-221953760167332-082511-1b65cb0c419e3820eaff2484eec10617-1460119336'
-    });
+    const hotel = await Hotel.findById(Hotel_id, 'name')
+    const room = await RoomType.findById(RoomType_id, 'name price')
+
+    mercadopago.configure({ access_token: TOKEN_MP });
 
     const preference = {
         items: [
             {
-                title: attributes.title,
-                quantity: attributes.quantity,
+                title: `${hotel.name} - ${room.name}`,
+                quantity: quantity,
                 currency_id: 'USD',
-                unit_price: attributes.unit_price
+                unit_price: room.price
             }
         ],
-
-        notification_url: "https://6d19-179-6-14-10.ngrok.io/payment/webhook",
+        notification_url: "https://ac35-179-6-14-10.ngrok.io/payment/webhook",
         back_urls: {
             success: "https://front-find-hotel.vercel.app/",
             // pending: "https://e720-190-237-16-208.sa.ngrok.io/pending",
@@ -27,8 +31,10 @@ const createOrder = async (attributes) => {
     };
     return mercadopago.preferences.create(preference)
         .then((response) => {
+            const newDeal = new Deal({ User_id, Hotel_id, RoomType_id, checkIn, checkOut, Preference_id: response.body.id })
+            const nuevoDeal = newDeal.save()
             return {
-                init_point: response.response.sandbox_init_point,
+                init_point: response.body.init_point,
                 id: response.body.id,
             };
         })
