@@ -17,11 +17,26 @@ const dealSchema = new Schema({
         ref: 'RoomType',
         required: true
     },
+    Preference_id: {
+        type: String,
+        unique: true
+    },
+    Order_id: {
+        type: String,
+        // unique: true
+    },
+    MercadoPago_operation: {
+        type: String,
+        // unique: true
+    },
     status: {
         type: String,
         enum: ["booking", "purchase", "cancelled", "active", "finished"],
         default: "booking",
         required: true
+    },
+    quantity: {
+        type: Number,
     },
     checkIn: {
         type: Date,
