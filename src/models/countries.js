@@ -15,7 +15,6 @@ const countriesSchema = new Schema({
     country_phone_code: {
         type: Number,
         required: true,
-        unique: true
     }
 });
 
