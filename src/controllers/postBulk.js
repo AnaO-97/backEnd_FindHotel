@@ -136,7 +136,6 @@ module.exports = postCountries;
 //     const devolver = new States({ Countries_id: _id, states: data })
 //     return await devolver.save();
 
-
 // };
 
 // module.exports = postCountries;
