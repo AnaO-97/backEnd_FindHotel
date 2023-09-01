@@ -4,7 +4,7 @@ const userAuthVerifyEmail = require('./userAuthVerifyEmail')
 const userCreate = require('./userCreate')
 const userDelete = require('./userDelete')
 const userFindById = require('./userFindById')
-const userGet = require('./userGet')
+const usersFind = require('./usersFind')
 const userUpdate = require('./userUpdate')
 
 module.exports = {
@@ -14,6 +14,6 @@ module.exports = {
     userCreate,
     userDelete,
     userFindById,
-    userGet,
+    usersFind,
     userUpdate,
 }

@@ -17,7 +17,6 @@ hotelRoutes.get("/detail", hotelDetailGet);
 // hotelRoutes.get("/byCountry/:country", hotelsByCountryGet);
 // hotelRoutes.get("/byState/:state", hotelsByStateGet);
 // hotelRoutes.get("/name/:name", hotelByNameGet);
-hotelRoutes.get("/", hotelGet);
 hotelRoutes.delete("/desactive/:id", hotelDeleteDesactive);
 hotelRoutes.delete("/:id", hotelDelete);
 hotelRoutes.put("/", hotelPut);
