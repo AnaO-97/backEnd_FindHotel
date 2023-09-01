@@ -1,18 +1,59 @@
-const Countries = require("../models/countries.js");
+/*-----------Bulk Countries Information--------------------------------------------------------------------------------------------*/
+
+const HotelRoom = require("../models/hotelRoomModel");
 
 const postCountries = async (attributes) => {
-    console.log(attributes);
-    // const countriesBulk = new Countries(attributes);
-    // return await countriesBulk.create();
-    return await Countries.create(attributes);
+    const hotelRooms=HotelRoom.find({},'User_id Hotel_id RoomType_id')
+    return hotelRooms
 };
 
 module.exports = postCountries;
 
 
-/*------------------------------------------------------------------------------------------------------------*/
+/*-----------Bulk Hotel Rooms Information-------------------------------------------------------------------------------------------------*/
 
-// //const Countries = require("../models/countries.js");
+// const Hotel = require("../models/hotelModel");
+// const RoomType = require("../models/roomTypeModel");
+// const HotelRoom=require('../models/hotelRoomModel')
+// const postCountries = async (attributes) => {
+
+//     const hotels=await Hotel.find({},'_id User_id');
+//     hotels.forEach(async (hotel)=>{
+//         const rooms=await RoomType.find({User_id:hotel.User_id},'_id');
+//         rooms.forEach(async (room)=>{
+//             const final= new HotelRoom({
+//                 Hotel_id:hotel._id,
+//                 User_id:hotel.User_id,
+//                 RoomType_id:room._id
+//             })
+//             await final.save()
+//         })
+//     })
+
+//    return 'ok'
+// };
+
+// module.exports = postCountries;
+
+
+
+/*-----------Bulk Countries Information--------------------------------------------------------------------------------------------*/
+
+// const Countries = require("../models/countries.js");
+
+// const postCountries = async (attributes) => {
+//     console.log(attributes);
+//     // const countriesBulk = new Countries(attributes);
+//     // return await countriesBulk.create();
+//     return await Countries.create(attributes);
+// };
+
+// module.exports = postCountries;
+
+
+/*-------Bulk image Hotel (array)-----------------------------------------------------------------------------------------------------*/
+
+
 // const Hotel = require("../models/hotelModel.js");
 // const hotels = require('../../hotels.json')
 // const { v4: uuidv4 } = require('uuid');
@@ -20,9 +61,6 @@ module.exports = postCountries;
 // const postCountries = async (attributes) => {
 //     console.log(attributes);
 //     console.log(attributes.id);
-//     // const countriesBulk = new Countries(attributes);
-//     // return await countriesBulk.create();
-//     // const hotel = await Hotel.findByIdAndUpdate(attributes.id);
 
 //     hotels.forEach(hotel => {
 //         const hotelNew = {
@@ -41,7 +79,9 @@ module.exports = postCountries;
     
     
 // };
-/*------------------------------------------------------------------------------------------------------------*/
+
+
+/*-----------Bulk States Info-------------------------------------------------------------------------------------------------*/
 
 // module.exports = postCountries;
 
@@ -64,7 +104,7 @@ module.exports = postCountries;
 //     const { _id } = await Countries.findOne({ country_name: name });
 //     const devolver = new States({ Countries_id: _id, states: data })
 //     return await devolver.save();
-//     // return devolver
+
 
 // };
 

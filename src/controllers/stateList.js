@@ -1,23 +1,11 @@
-const axios = require('axios')
-require('dotenv').config();
-const { ENDPOINT_STATES, AUTHORIZATION, ACCEPT } = process.env
+const States = require('../models/states')
+const Countries = require('../models/countries')
 
 const stateList = async (country) => {
-    console.log(`${ENDPOINT_STATES}${country}`);
-    return await axios({
-        method: 'get',
-        url: `${ENDPOINT_STATES}${country}`,
-        headers: {
-            'Authorization': AUTHORIZATION,
-            'Accept': ACCEPT
-        }
-    })
-        .then(({ data }) => {
-            return data
-        })
-        .catch((error) => {
-            throw Error(error)
-        })
+    const countryRegex = new RegExp(country, 'i');
+    const country_id = await Countries.find({ country_name: countryRegex }, '_id')
+    const states_list = await States.find({ Countries_id: country_id }, 'states')
+    return states_list
 }
 
 module.exports = stateList;

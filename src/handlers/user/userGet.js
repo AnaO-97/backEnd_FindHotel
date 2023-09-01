@@ -1,10 +1,10 @@
-const User = require('../../models/userModel');
 
+const usersFind = require('../../controllers/user/usersFind')
 
 const userGet = async (req, res) => {
 
     try {
-        const users = await User.find();
+        const users = await usersFind()
         res.json(users);
     } catch (error) {
         res.status(500).json({ message: error });
