@@ -20,7 +20,7 @@ const createHotelRoom = async (req, res) => {
             console.log("hotelBefore",hotelBefore)
             
             if(hotelUpdated)
-                res.status(200).json(hotelUpdated);
+                res.status(200).json({"HOTELROOM_ID":hotelRoom._id,hotelUpdated});
             else{
                 HotelRoom.findByIdAndDelete(hotelRoom._id)
                 res.status(400).json({ "error": "Hotel not updated" });
