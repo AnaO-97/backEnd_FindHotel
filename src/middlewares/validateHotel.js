@@ -26,27 +26,27 @@ const validateHotel = [
             return true;
         }),
 
-    body("room.name")
-        .notEmpty().withMessage("The name cannot be empty.")
-        .isLength({ min: 3 }).withMessage("The name must have min 3 characters.")
-        .isLength({ max: 30 }).withMessage("The name must have max 30 characters.")
-        .matches(/^(?!.*\s{2,}).*$/).withMessage('The name cannot have multiple spaces in a row.')
-        .matches(/^([!-/:-@\[-`\{-~¿¡°])/).withMessage('The name cannot start with special characters.')
-        .matches(/([!-/:-@\[-`\{-~¿¡°])$/).withMessage('The name cannot end with special characters.'),
-    body("room.price")
-        .notEmpty().withMessage("The price cannot be empty.")
-        .isNumeric().withMessage("The price must be a number.")
-        .custom(price => {
-            if (price < 1) throw new Error("The price must be greater than 0.");
-            return true;
-        }),
-    body("room.stock")
-        .notEmpty().withMessage("The stock cannot be empty.")
-        .isNumeric().withMessage("The stock must be a number.")
-        .custom(stock => {
-            if (stock < 0) throw new Error("The price must be greater than or equal to 0.");
-            return true;
-        }),
+    // body("room.name")
+    //     .notEmpty().withMessage("The name cannot be empty.")
+    //     .isLength({ min: 3 }).withMessage("The name must have min 3 characters.")
+    //     .isLength({ max: 30 }).withMessage("The name must have max 30 characters.")
+    //     .matches(/^(?!.*\s{2,}).*$/).withMessage('The name cannot have multiple spaces in a row.')
+    //     .matches(/^([!-/:-@\[-`\{-~¿¡°])/).withMessage('The name cannot start with special characters.')
+    //     .matches(/([!-/:-@\[-`\{-~¿¡°])$/).withMessage('The name cannot end with special characters.'),
+    // body("room.price")
+    //     .notEmpty().withMessage("The price cannot be empty.")
+    //     .isNumeric().withMessage("The price must be a number.")
+    //     .custom(price => {
+    //         if (price < 1) throw new Error("The price must be greater than 0.");
+    //         return true;
+    //     }),
+    // body("room.stock")
+    //     .notEmpty().withMessage("The stock cannot be empty.")
+    //     .isNumeric().withMessage("The stock must be a number.")
+    //     .custom(stock => {
+    //         if (stock < 0) throw new Error("The price must be greater than or equal to 0.");
+    //         return true;
+    //     }),
 
     body("country")
         .notEmpty().withMessage("The country cannot be empty.")
