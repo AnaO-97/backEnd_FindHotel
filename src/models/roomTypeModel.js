@@ -25,12 +25,7 @@ const roomTypeSchema = new Schema({
         type: Number,
         required: true,
         min: 0,
-    },
-    freeRooms: {
-        type: Number,
-        required: true,
-        min: 0,
-    },
+    },    
     isActive: {
         type: Boolean,
         // required: true
