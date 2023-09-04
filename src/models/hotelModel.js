@@ -29,7 +29,7 @@ const hotelSchema = new Schema({
                 id: { type: String },
                 src: { type: String },
                 typeImage: { type: String },
-                size: {type: Number}
+                size: { type: Number }
             }
         ],
         validate: {
@@ -59,7 +59,7 @@ const hotelSchema = new Schema({
     address: {
         type: String,
         required: true,
-    }
+    },
     roomService: {
         type: Boolean,
     },

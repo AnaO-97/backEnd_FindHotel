@@ -1,16 +1,21 @@
-const firebase = require("../../config");
-const User = require("../../models/userModel.js");
+const { firebase } = require("../../config");
+const { handlerSendEmailVerify } = require("../../handlers/user");
+const { User } = require("../../models");
 
-exports.verifyEmail = (req, res) => {
-    firebase
-        .auth()
-        .currentUser.sendEmailVerification()
-        .then(function () {
-            return res.status(200).json({ status: "Email Verification Sent!" });
-        })
-        .catch((error) => {
-            if (error.code === "auth/too-many-requests") {
-                return res.status(500).json({ error: error.message });
-            }
-        });
+const userAuthVerifyEmail = async (req, res) => {
+    const { email } = req.params
+    try {
+
+        const userFindHotel = User.findOne({ email, status: 'inactive' })
+        if (userFindHotel) {
+            await handlerSendEmailVerify(userFindHotel)
+            return res.status(200).json({ message: "Email Verification Sent!" });
+        }
+        else {
+            return res.status(400).json({ error: "User not found" });
+        }
+    } catch (error) {
+        return res.status(400).json({ error: error.message });
+    }
 };
+module.exports = userAuthVerifyEmail 
