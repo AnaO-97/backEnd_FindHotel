@@ -1,6 +1,5 @@
 const { Router } = require('express');
 const { validationResult } = require('express-validator');
-
 const validationUserPost = require("../middlewares/validationUserPost")
 const userPost = require("../handlers/user/userPost.js");
 const userGet = require("../handlers/user/userGet.js");
