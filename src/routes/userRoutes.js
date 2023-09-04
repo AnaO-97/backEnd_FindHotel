@@ -17,7 +17,6 @@ userRoutes.delete("/", userDelete);
 //userRoutes.get("/:id", userGetID);
 // userRoutes.put("/", userPut);
 
-
 const {
     userAuthActiveAccount,
     userAuthSignIn,

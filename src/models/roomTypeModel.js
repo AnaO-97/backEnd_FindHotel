@@ -10,7 +10,7 @@ const roomTypeSchema = new Schema({
         type: String,
         required: true
     },
-    roomServices: [{
+    services: [{
         type: String,
         enum: ["no services", "jacuzzi", "room service", "fridge", "bar", "heater", "air-conditioning"],
         default: ["no services"],
@@ -23,7 +23,7 @@ const roomTypeSchema = new Schema({
     stock: {
         type: Number,
         required: true,
-        min: 0, 
+        min: 0,
     },
     busy: {
         type: Number,
