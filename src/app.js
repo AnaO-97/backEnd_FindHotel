@@ -11,29 +11,8 @@ const MongoStore = require('connect-mongo')
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-app.all('*', function (request, response, next) {
-    var whitelist = request.headers.origin;
-    response.header('Access-Control-Allow-Origin', whitelist)
-    response.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS,HEAD');
-    response.header('Access-Control-Allow-Headers', " authorization, Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
-    response.header("Access-Control-Allow-Credentials", "true");
-    next()
-})
-
-app.use(cors({
-    origin: function (origin, callback) {
-        console.log(origin)
-        if (!origin) return callback(null, true)
-
-        if (config.DOMAINS.indexOf(origin) === -1) {
-            return callback('error de cors', false)
-        }
-        return callback(null, true)
-    }
-}))
-
 app.use(cookieParser());
+app.use(cors());
 // Config la session
 const sessionConfig = {
     name: config.SESSION_NAME,
@@ -41,10 +20,10 @@ const sessionConfig = {
     resave: false, // Define resave como false para evitar la advertencia
     saveUninitialized: false,
     rolling: true,
-    cookie: {
+    cookies: {
         path: '/',
         secure: false,
-        httpOnly: true,
+        httpOnly: false,
         maxAge: config.SESSION_TIME * 60 * 1000,
     },
     store: new MongoStore({

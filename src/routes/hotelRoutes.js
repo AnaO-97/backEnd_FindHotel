@@ -8,6 +8,7 @@ const hotelsByCountryGet = require('../handlers/hotel/hotelsByCountryGet.js');
 const hotelsByStateGet = require('../handlers/hotel/hotelsByStateGet.js');
 const hotelByNameGet = require('../handlers/hotel/hotelByNameGet.js');
 const hotelDetailGet = require('../handlers/hotel/hotelDetailGet.js');
+const getHotelAvailableForBooking = require('../controllers/hotel/getHotelAvailableForBooking.js')
 
 const hotelRoutes = Router();
 
@@ -22,4 +23,5 @@ hotelRoutes.delete("/desactive/:id", hotelDeleteDesactive);
 hotelRoutes.delete("/:id", hotelDelete);
 hotelRoutes.put("/", hotelPut);
 
+hotelRoutes.get('/:search', getHotelAvailableForBooking)
 module.exports = hotelRoutes;
