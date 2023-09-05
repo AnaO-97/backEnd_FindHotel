@@ -7,82 +7,92 @@ const getDealsByUserId = async (req, res) => {
     
     if(mongoose.isValidObjectId(id)){
         const user = await User.findById(id);
-        console.log("Si es id mongoose");
 
         if(user){
             try {
                 const dealsUser = await Deal.aggregate([
-                    { $match: { User_id: new mongoose.Types.ObjectId(id) } },
+                    { $match: { User_id: new mongoose.Types.ObjectId(id) }},
                     //--------------------**User**--------------------
-                    {                
-                        $lookup: {                    
+                    {
+                        $lookup: {
                             from: 'users',
                             localField: 'User_id',
                             foreignField: '_id',
                             as: 'user',
                         },
                     },
-                    {// Ordenar por marca de tiempo (timestamp) descendente
-                        $sort: {
-                            createdAt: -1,
-                        },
-                    },
                     {
                         $unwind: '$user',
                     },
                     //--------------------**Hotel**--------------------
-                    {
-                        $lookup: {
+                    {                
+                        $lookup: {                    
                             from: 'hotels',
                             localField: 'Hotel_id',
                             foreignField: '_id',
-                            as: 'user.hotel',
+                            as: 'hotel',
+                        },
+                        },
+                        {
+                            $unwind: '$hotel',
+                        },                    
+                    //--------------------**RoomType**--------------------
+                    {
+                        $lookup: {
+                            from: 'roomtypes',
+                            localField: 'RoomType_id',
+                            foreignField: '_id',
+                            as: 'roomType',
                         },
                     },
                     {
-                        $unwind: '$user.hotel',
+                        $unwind: '$roomType',
+                    },                    
+                    //--------------------**group**--------------------
+                    {
+                        $group: {
+                            _id: '$User_id',
+                            dealsUser : {
+                                $first: '$user',
+                            }, 
+                            deals: {                                
+                                $push: {
+                                    status   : '$status',
+                                    quantity : '$quantity',
+                                    checkIn  : '$checkIn',
+                                    checkOut : '$checkOut',
+                                    hotel    : '$hotel',
+                                    roomType : '$roomType',
+                                },
+                            },      
+                        }
                     },
-                    //--------------------**RoomType**--------------------
-                    // {
-                    //     $lookup: {
-                    //         from: 'roomtypes',
-                    //         localField: 'RoomType_id',
-                    //         foreignField: '_id',
-                    //         as: 'user.hotel.roomType',
-                    //     },
-                    // },
-                    // {
-                    //     $unwind: '$user.hotel.roomType',
-                    // },
                     //--------------------**project**--------------------
                     {
-                        $project: {
-                            'status':1,
-        
-                            'user._id'  : 1,
-                            'user.role' : 1,
-                            'user.email': 1,
-                            // 'user.firstName' : 1,
-                            // 'user.lastName' : 1,                    
-        
-                            'user.hotel._id' : 1,
-                            'user.hotel.name': 1,
-                            'user.hotel.address': 1,
-                            'user.hotel.category': 1,
-                            // 'user.hotel.phone': 1,
-                            // 'user.hotel.rating': 1,
-        
-                            // 'user.hotel.roomtypes._id': 1,
-                            // 'user.hotel.roomtypes.name': 1,
-                            // 'user.hotel.roomtypes.price': 1,
-                            // 'user.hotel.roomtypes.roomServices': 1,
-        
-                        },
-                    },
+                        $project : {
+                            _id : 0,
+            
+                            dealsUser : {
+                                _id : 1,
+                                firstName : 1,
+                                lastName  : 1,
+                                email : 1,
+                                image : 1,
+                                age   : 1,
+                                phone : 1,
+                                country : 1,
+                                state   : 1,
+                                role    : 1,
+                                status  : 1,
+
+                                deals : '$deals',                                                                 
+                            },
+                        }
+                    }
                 ]);
             
                 if(dealsUser.length>0){
-                    res.status(200).json(dealsUser);
+                    res.status(200).json(dealsUser[0]);
                 }
                 else{
                     res.status(404).json({"message": `No deals found for {${user._id} : ${user.email}}`})
@@ -104,22 +114,3 @@ const getDealsByUserId = async (req, res) => {
 };
 
 module.exports = getDealsByUserId;
-
-
-// 'user._id': 1,
-// 'user.firstName': 1,
-// 'user.lastName': 1,
-// 'user.email': 1,
-// 'user.country': 1,
-// 'user.city': 1,
-// 'user.hotel._id': 1,
-// 'user.hotel.name': 1,
-// 'user.hotel.rating': 1,
-// 'user.hotel.category': 1,
-// 'user.hotel.phone': 1,
-// 'user.hotel.address': 1,
-// 'user.hotel.roomType._id': 1,
-// 'user.hotel.roomType.name': 1,
-// 'user.hotel.roomType.price': 1,
-// 'user.hotel.roomType.stock': 1,
-// 'user.hotel.roomType.services': 1

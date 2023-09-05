@@ -23,7 +23,7 @@ const roomTypeSchema = new Schema({
     stock: {
         type: Number,
         required: true,
-        min: 0,
+        min: 0, 
     },
     busy: {
         type: Number,
