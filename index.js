@@ -4,5 +4,5 @@ const config = require("./src/config/config");
 
 app.listen(config.PORT, () => {
     dataBase();
-    console.log(`Server on port: http://localhost:${ config.PORT  }`);
+    console.log(`Server on port: http://localhost:${config.PORT}`);
 });
