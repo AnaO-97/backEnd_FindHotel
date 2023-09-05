@@ -1,5 +1,7 @@
 const { firebase } = require("../../config");
-const { handlerSendEmailVerify } = require("../../handlers/user");
+const { handlerSendEmailVerify,
+  handlerDateFinishSession,
+  handlerTokenIdSession } = require("../../handlers/user");
 const { config } = require('../../config');
 const { User } = require('../../models');
 
@@ -20,16 +22,14 @@ const userAuthSignIn = async (req, res) => {
       if (UserFH && UserFH.status === 'active') {
 
         req.session.auth = {
-          _id: UserFH.id,
+          User_id: UserFH.id,
           email: UserFH.email,
+          photo: UserFH.photo,
           role: UserFH.role
         }
 
-        console.log(req.session)
-
         req.session.save(async (err) => {
           if (err) {
-            console.error('Error al guardar la sesión:', err);
             return res.status(500).json({ message: 'Error al guardar la sesión.' });
           }
 
@@ -41,11 +41,17 @@ const userAuthSignIn = async (req, res) => {
               expiresIn: parseInt(config.SESSION_TIME * 60 * 1000),
             });
 
-            console.log(token)
             const options = { maxAge: config.SESSION_TIME * 60 * 1000, httpOnly: true };
-            // res.cookie(config.SESSION_NAME, token, options);
 
-            return res.status(200).json(req.session.auth);
+            const id_session = req.sessionID
+            const expires = await handlerDateFinishSession(id_session)
+
+            res.cookie(config.SESSION_NAME, token, options)
+            return res.status(200).json({
+              _id: handlerTokenIdSession(id_session),
+              expires: expires,
+              ...req.session.auth
+            })
           } catch (error) {
             return res.status(500).json({ message: 'Error al generar el token de sesión.' });
           }
