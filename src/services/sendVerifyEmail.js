@@ -1,6 +1,7 @@
 require("dotenv").config();
 const path = require('path');
 const fs = require('fs');
+const { config } = require('../config')
 
 /**
  * 
@@ -9,22 +10,27 @@ const fs = require('fs');
  * @param {*} activationAccount account activation link
  * @returns 
  */
-const sendVerifyEmail = (email, activationAccount, activationPath) => {
-    const bodyMail = path.join(__dirname, '../views/mailActivation.html');
-    const mailActivation = fs.readFileSync(bodyMail, 'utf8');
+const sendVerifyEmail = (email, token, file, route) => {
+    try {
+        const bodyMail = path.join(__dirname, `../views/${file}.html`);
+        const readMail = fs.readFileSync(bodyMail, 'utf8');
 
-    const mailValidation = mailActivation
-        .replace('_ACTIVATION__PATH_', activationPath)
-        .replace('_ACCOUNT_ACTIVATION_', activationAccount);
+        const mailToSend = readMail
+            .replace('_ACTIVATION__PATH_', `${config.URL_BACK}${route}`)
+            .replace('_ACCOUNT_ACTIVATION_', token);
 
-    const mail = {
-        from: process.env.MAIL_EMAIL,
-        to: email,
-        subject: "Verifica tu cuenta.",
-        html: mailValidation
-    };
+        const mail = {
+            from: process.env.MAIL_EMAIL,
+            to: email,
+            subject: "Verifica tu cuenta.",
+            html: mailToSend
+        };
 
-    return mail;
+        return mail;
+
+    } catch (error) {
+        console.log(error)
+    }
 };
 
 module.exports = sendVerifyEmail;

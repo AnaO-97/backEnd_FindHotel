@@ -1,18 +1,27 @@
 require("dotenv").config();
 const jwt = require('jsonwebtoken');
-const firebase = require("../config/firebaseConfig");
+const { config } = require('../config')
+const { firebase } = require("../config");
+const { User } = require("../models")
 
 const generateTokenVerifyMail = async (user) => {
     try {
-        if (!user.emailVerified) {
-            const verificationLink = await firebase
+        const userFindHotel = await User.findOne({ email: user.email })
+
+        if (!user.emailVerified || userFindHotel.status === 'inactive') {
+            const actionCodeSettings = {
+                url: config.URL_FRONT,
+                handleCodeInApp: true,
+            };
+            const authFirebaseToken = await firebase
                 .auth()
-                .generateEmailVerificationLink(user.email);
+                .generateEmailVerificationLink(
+                    user.email, actionCodeSettings);
 
             const token = jwt.sign({
                 email: user.email,
-                activation: verificationLink
-            }, process.env.JWT_KEY, { expiresIn: '7d' });
+                activation: authFirebaseToken
+            }, config.JWT_MAIL, { expiresIn: '7d' });
             return token;
 
         } else {

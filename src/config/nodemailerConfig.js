@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+const config = require('./config');
 require("dotenv").config();
 
 // Configuración del transporte de correo (SMTP)
@@ -9,8 +10,8 @@ const mailTransport = nodemailer.createTransport({
     secure: false,
     requireTLS: true,
     auth: {
-        user: process.env.MAIL_EMAIL,
-        pass: process.env.MAIL_PASSWORD,
+        user: config.MAIL_FINDHOTEL,
+        pass: config.PASS_FINDHOTEL,
     },
     tls: {
         rejectUnauthorized: false
