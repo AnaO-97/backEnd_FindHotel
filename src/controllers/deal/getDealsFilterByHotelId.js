@@ -11,22 +11,20 @@ const getDealsByAttribute =  async(queryAtt, queryValue, id) => {
     }
     
     const dealsHotel = await Deal.aggregate([
-        { $match: { Hotel_id: new mongoose.Types.ObjectId(id), 
-                    [ queryAtt ]  :  queryValue
-        }},
+        { $match: 
+            { 
+                Hotel_id: new mongoose.Types.ObjectId(id), 
+                [ queryAtt ]  :  queryValue
+            }
+        },        
         //--------------------**Hotel**--------------------
         {                
-            $lookup: {                    
-                from: 'hotels',
-                localField: 'Hotel_id',
-                foreignField: '_id',
-                as: 'hotel',
-            },
+        $lookup: {                    
+            from: 'hotels',
+            localField: 'Hotel_id',
+            foreignField: '_id',
+            as: 'hotel',
         },
-        {// Ordenar por marca de tiempo (timestamp) descendente
-            $sort: {
-                createdAt: -1,
-            },
         },
         {
             $unwind: '$hotel',
@@ -37,49 +35,65 @@ const getDealsByAttribute =  async(queryAtt, queryValue, id) => {
                 from: 'users',
                 localField: 'User_id',
                 foreignField: '_id',
-                as: 'hotel.user',
+                as: 'user',
             },
         },
         {
-            $unwind: '$hotel.user',
+            $unwind: '$user',
         },
         //--------------------**RoomType**--------------------
-        // {
-        //     $lookup: {
-        //         from: 'roomtypes',
-        //         localField: 'RoomType_id',
-        //         foreignField: '_id',
-        //         as: 'hotel.user.roomType',
-        //     },
-        // },
-        // {
-        //     $unwind: '$hotel.user.roomType',
-        // },
+        {
+            $lookup: {
+                from: 'roomtypes',
+                localField: 'RoomType_id',
+                foreignField: '_id',
+                as: 'roomType',
+            },
+        },
+        {
+            $unwind: '$roomType',
+        },                    
+        //--------------------**group**--------------------
+        {
+            $group: {
+                _id: '$Hotel_id',
+                dealsHotel : {
+                    $first: '$hotel',
+                }, 
+                deals: {                                
+                    $push: {
+                        status   : '$status',
+                        quantity : '$quantity',
+                        checkIn  : '$checkIn',
+                        checkOut : '$checkOut',
+                        user     : '$user',
+                        roomType : '$roomType',
+
+                    },
+                },      
+            }
+        },
         //--------------------**project**--------------------
         {
-            $project: {
-                'status' : 1,
+            $project : {
+                _id : 0,
 
-                'hotel._id' : 1,
-                'hotel.name': 1,
-                'hotel.address': 1,
-                'hotel.category': 1,
-                // 'hotel.phone': 1,
-                // 'hotel.rating': 1,
+                dealsHotel : {
+                    _id     : 1,
+                    name    : 1,
+                    address : 1,
+                    country : 1,
+                    state   : 1,
+                    image   : 1,
+                    category: 1,
+                    services: 1,
+                    roomService: 1,
 
-                'hotel.user._id'  : 1,
-                'hotel.user.role' : 1,
-                'hotel.user.email': 1,
-                // 'hotel.user.firstName' : 1,
-                // 'hotel.user.lastName' : 1,                    
-
-                // 'hotel.user.roomtypes._id': 1,
-                // 'hotel.user.roomtypes.name': 1,
-                // 'hotel.user.roomtypes.price': 1,
-                // 'hotel.user.roomtypes.roomServices': 1,        
+                    deals : '$deals',                                                                 
+                },
             }
         }
-    ]); 
+    ]);
     
     return dealsHotel;
 };
@@ -105,7 +119,7 @@ const getDealsFilterByHotelId = async (req,res ) => {
                     const dealsHotel = await getDealsByAttribute(queryAtt, queryValue, id);
                     
                     if(dealsHotel.length>0)
-                        res.status(200).json(dealsHotel);
+                        res.status(200).json(dealsHotel[0]);
                     else
                         res.status(202).json({
                             "hotel_name" : hotel.name,
