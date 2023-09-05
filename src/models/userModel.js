@@ -24,12 +24,12 @@ const userSchema = new Schema({
     },
     image: {
         type: String,
-        validate: {
-            validator: (value) => {
-                return /\.(jpg|jpeg|png|gif)$/i.test(value);
-            },
-            message: ({ value }) => `${value} is not a valid image URL.`
-        }
+        // validate: {
+        //     validator: (value) => {
+        //         return /\.(jpg|jpeg|png|gif)$/i.test(value);
+        //     },
+        //     message: ({ value }) => `${value} is not a valid image URL.`
+        // }
     },
     age: {
         type: Number,
@@ -53,13 +53,13 @@ const userSchema = new Schema({
     },
     role: {
         type: String,
-        enum: ["User", "Hotel", "Admin"],
-        default: "User",
+        enum: ["user", "hotel", "admin"],
+        default: "user",
     },
     status: {
         type: String,
-        enum: ["Active", "Inactive", "Supended", "Banned"],
-        default: "Supended",
+        enum: ["active", "inactive", "supended", "banned"],
+        default: "inactive",
     },
 
 }, { timestamps: true });

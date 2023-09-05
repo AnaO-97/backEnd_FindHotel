@@ -1,4 +1,4 @@
-const User = require("../../models/userModel");
+const { User } = require("../../models");
 
 
 const userUpdate = async (id_userUpdate, atts_userUpdate) => {
