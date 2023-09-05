@@ -10,7 +10,6 @@ const userPut = require("../handlers/user/userPut.js");
 
 const userRoutes = Router();
 
-
 userRoutes.post("/", validationUserPost, userPost);
 userRoutes.get("/users", userGet);
 userRoutes.delete("/", userDelete);
