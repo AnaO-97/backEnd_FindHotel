@@ -59,11 +59,7 @@ const hotelSchema = new Schema({
     address: {
         type: String,
         required: true,
-    },
-    room: [{
-        type: Schema.Types.ObjectId,
-        ref: 'HotelRoom',          
-    }],
+    }
     roomService: {
         type: Boolean,
     },
