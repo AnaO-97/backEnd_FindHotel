@@ -24,9 +24,8 @@ dealRoutes.post('/', createDealByUserId);
 dealRoutes.get('/user/:userId', getDealsByUserId);
 dealRoutes.get('/hotel/:hotelId',
     (req, res) => {
-        const [[, queryValue]] = Object.entries(req.query);
-        // console.log(queryAtt); console.log(queryValue);
-
+        const [ queryValue ] = Object.values(req.query);
+        
         (queryValue !== null && queryValue !== undefined && queryValue !== "")
             ? getDealsFilterByHotelId(req, res)
             : getDealsByHotelId(req, res)

@@ -59,7 +59,7 @@ const hotelSchema = new Schema({
     address: {
         type: String,
         required: true,
-    }
+    },
     roomService: {
         type: Boolean,
     },
