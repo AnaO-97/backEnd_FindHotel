@@ -1,13 +1,44 @@
-/*-----------Bulk Countries Information--------------------------------------------------------------------------------------------*/
-
-const HotelRoom = require("../models/hotelRoomModel");
+/*-----------Bulk Changes Deal Information--------------------------------------------------------------------------------------------*/
+const User=require('../models/userModel')
+const Deal = require("../models/dealModel");
 
 const postCountries = async (attributes) => {
-    const hotelRooms=HotelRoom.find({},'User_id Hotel_id RoomType_id')
-    return hotelRooms
+const deal=await Deal.find({},'_id')
+const users=await User.find({role:'User'},'_id')
+let i=0
+let j=0
+try {
+while(i<deal.length){
+    const id=deal[i].id
+    const idtwo=deal[i+20].id
+    const update={User_id:users[j]?._id}
+// console.log('deal',deal[i].id)
+// console.log('users',users[j])
+const impr=await Deal.findByIdAndUpdate(id,update,{new:true})
+const imprtwo=await Deal.findByIdAndUpdate(idtwo,update,{new:true})
+i++
+j++
+}
+return 'ok'
+}catch(error){
+    console.log(error)
+}
+
 };
 
+
 module.exports = postCountries;
+
+/*-----------Bulk Countries Information--------------------------------------------------------------------------------------------*/
+
+// const HotelRoom = require("../models/hotelRoomModel");
+
+// const postCountries = async (attributes) => {
+//     const hotelRooms=HotelRoom.find({},'User_id Hotel_id RoomType_id')
+//     return hotelRooms
+// };
+
+// module.exports = postCountries;
 
 
 /*-----------Bulk Hotel Rooms Information-------------------------------------------------------------------------------------------------*/
