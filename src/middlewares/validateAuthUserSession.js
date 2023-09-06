@@ -10,9 +10,8 @@ const validateAuthUserSession = (role = 'user') => async (req, res, next) => {
         const Session = db.collection('sessions');
 
         try {
-            await client.connect();
 
-            const db = client.db();
+            const db = mongoose.connection;
             const Session = db.collection('sessions');
             const { session } = await Session.findOne({ auth });
             console.log(session);
