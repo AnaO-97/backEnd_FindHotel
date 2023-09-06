@@ -1,11 +1,11 @@
 const jwt = require('jsonwebtoken');
 const { Router } = require("express");
+const adminRoutes= require("./adminRoutes");
 const dealRoutes = require("./dealRoutes");
 const userRoutes = require("./userRoutes");
 const bulkRoutes = require("./bulkRoutes.js");
 const hotelRoutes = require("./hotelRoutes");
 const roomTypeRoutes = require("./roomTypeRoutes");
-const adminRoutes = require("./adminRoutes.js");
 const destinationRoutes = require("./destinationRoutes.js");
 const trendingRoutes = require("./trendingRoutes");
 const paymentRoutes = require("./paymentRoutes.js");
@@ -21,9 +21,9 @@ indexRouter.use("/trending", trendingRoutes);
 indexRouter.use("/payment", paymentRoutes);
 indexRouter.use("/roomType", roomTypeRoutes);
 indexRouter.use("/hotelRoom", hotelRoomRoutes);
-// indexRouter.use("/admin")
 indexRouter.use("/bulk", bulkRoutes);
 indexRouter.use("/deals", dealRoutes)
+indexRouter.use("/admin", adminRoutes);
 
 indexRouter.post(
     "/generarToken",

@@ -16,7 +16,7 @@ const userRoutes = Router();
 userRoutes.post("/", validationUserPost, userPost);
 userRoutes.get("/users", userGet);
 userRoutes.delete("/", userDelete);
-//userRoutes.get("/:id", userGetID);
+userRoutes.get("/:id", userGetID);
 // userRoutes.put("/", userPut);
 
 

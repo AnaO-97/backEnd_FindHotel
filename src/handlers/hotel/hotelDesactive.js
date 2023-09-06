@@ -1,6 +1,6 @@
 const { desactiveHotel } = require("../../controllers/hotel");
 
-const hotelDeleteDesactive = async (req, res) => {
+const hotelDesactive = async (req, res) => {
     try {
         const { id } = req.params;
         const hotelDesactive = await desactiveHotel(id);
@@ -15,4 +15,4 @@ const hotelDeleteDesactive = async (req, res) => {
     };
 };
 
-module.exports = hotelDeleteDesactive;
+module.exports = hotelDesactive;

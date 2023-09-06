@@ -5,6 +5,7 @@ const userGetID = async (req, res) => {
         const { id } = req.params;
 
         const user = await userFindById(id);
+        
         res.status(200).json(user)
 
     } catch (error) {

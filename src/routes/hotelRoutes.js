@@ -2,12 +2,14 @@ const { Router } = require('express');
 const hotelPost = require("../handlers/hotel/hotelPost.js");
 const hotelGet = require("../handlers/hotel/hotelGet.js");
 const hotelDelete = require("../handlers/hotel/hotelDelete.js");
-const hotelDeleteDesactive = require("../handlers/hotel/hotelDeleteDesactive.js");
+const hotelDeleteDesactive = require("../handlers/hotel/hotelDesactive.js");
 const hotelPut = require("../handlers/hotel/hotelPut.js");
 const hotelsByCountryGet = require('../handlers/hotel/hotelsByCountryGet.js');
 const hotelsByStateGet = require('../handlers/hotel/hotelsByStateGet.js');
 const hotelByNameGet = require('../handlers/hotel/hotelByNameGet.js');
 const hotelDetailGet = require('../handlers/hotel/hotelDetailGet.js');
+
+const getHotelsByUserId           = require('../controllers/hotel/getHotelsByUserId.js')
 const getHotelAvailableForBooking = require('../controllers/hotel/getHotelAvailableForBooking.js')
 
 const hotelRoutes = Router();
@@ -22,6 +24,7 @@ hotelRoutes.get("/detail", hotelDetailGet);
 hotelRoutes.delete("/desactive/:id", hotelDeleteDesactive);
 hotelRoutes.delete("/:id", hotelDelete);
 hotelRoutes.put("/", hotelPut);
-
 hotelRoutes.get('/:search', getHotelAvailableForBooking)
+hotelRoutes.get("/user/:userId", getHotelsByUserId);
+
 module.exports = hotelRoutes;
