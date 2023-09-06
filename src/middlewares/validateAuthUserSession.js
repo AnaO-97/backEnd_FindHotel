@@ -3,18 +3,16 @@ const mongoose = require('mongoose');
 
 const validateAuthUserSession = (role = 'user') => async (req, res, next) => {
     const cookies = req.cookies
-    console.log(cookies)
+
     if (cookies) {
         const sessionID = req.sessionID
-        const db = mongoose.connection;
-        const Session = db.collection('sessions');
 
         try {
 
             const db = mongoose.connection;
             const Session = db.collection('sessions');
             const { session } = await Session.findOne({ auth });
-            console.log(session);
+
             if (session) {
                 if (role === session.auth.role) {
                     req.session = session.auth
