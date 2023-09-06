@@ -1,5 +1,11 @@
 const handlerSendEmailVerify = require('./handlerSendEmailVerify')
+const handlerDateFinishSession = require('./handlerDateFinishSession')
+const handlerDecodeTokenIDSession = require('./handlerDecodeTokenIDSession')
+const handlerTokenIdSession = require('./handlerTokenIDSession')
 
 module.exports = {
-    handlerSendEmailVerify
+    handlerSendEmailVerify,
+    handlerDateFinishSession,
+    handlerDecodeTokenIDSession,
+    handlerTokenIdSession,
 }

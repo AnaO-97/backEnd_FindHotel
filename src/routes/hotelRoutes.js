@@ -8,7 +8,6 @@ const hotelsByCountryGet = require('../handlers/hotel/hotelsByCountryGet.js');
 const hotelsByStateGet = require('../handlers/hotel/hotelsByStateGet.js');
 const hotelByNameGet = require('../handlers/hotel/hotelByNameGet.js');
 const hotelDetailGet = require('../handlers/hotel/hotelDetailGet.js');
-
 const getHotelsByUserId           = require('../controllers/hotel/getHotelsByUserId.js')
 const getHotelAvailableForBooking = require('../controllers/hotel/getHotelAvailableForBooking.js')
 
