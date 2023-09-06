@@ -3,9 +3,11 @@ const Hotel = require("../../models/hotelModel");
 const desactiveHotel = async (id) => {
     const hotelDesactive = await Hotel.findByIdAndUpdate(
         id,
-        { isActive: false },
+        { isActive: !this.isActive },
         { new: true }
     )
+
+
 
     return hotelDesactive;
 };

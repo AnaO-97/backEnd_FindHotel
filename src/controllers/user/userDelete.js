@@ -2,6 +2,7 @@ const User = require("../../models/userModel");
 
 const userDelete = async (req, res) => {
     const id = req.params._id;
+    
     try {
         const inactiveUser = await User.updateOne({ email }, { status: "inactive" });
         if (inactiveUser.nModified === 0) {
