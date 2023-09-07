@@ -9,6 +9,7 @@ config.URL_FRONT = process.env.URL_FRONT_FINDHOTEL
 config.URL_BACK = process.env.URL_BACK_FINDHOTEL
 
 config.JWT_MAIL = process.env.JWT_MAIL_KEY
+config.MAIL_ROUTE = process.env.MAIL_ROUTE
 config.MAIL_FINDHOTEL = process.env.MAIL_EMAIL
 config.PASS_FINDHOTEL = process.env.MAIL_PASSWORD
 
