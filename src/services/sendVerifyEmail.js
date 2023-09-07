@@ -12,7 +12,7 @@ const { config } = require('../config')
  */
 const sendVerifyEmail = (email, token, file, route) => {
     try {
-        const bodyMail = path.join(__dirname, `../views/${file}.html`);
+        const bodyMail = path.join(config.MAIL_ROUTE, `${file}.html`);
         const readMail = fs.readFileSync(bodyMail, 'utf8');
 
         const mailToSend = readMail
@@ -20,7 +20,7 @@ const sendVerifyEmail = (email, token, file, route) => {
             .replace('_ACCOUNT_ACTIVATION_', token);
 
         const mail = {
-            from: process.env.MAIL_EMAIL,
+            from: config.MAIL_EMAIL,
             to: email,
             subject: "Verifica tu cuenta.",
             html: mailToSend
