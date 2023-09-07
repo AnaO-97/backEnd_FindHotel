@@ -7,7 +7,6 @@ require("dotenv").config();
 const userAuthActiveAccount = async (req, res) => {
     const { userActive } = req.params
 
-
     try {
         const decodedToken = jwt.verify(userActive, config.JWT_MAIL);
         const { activation, email } = decodedToken

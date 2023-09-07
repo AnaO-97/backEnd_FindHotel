@@ -8,13 +8,18 @@ const { User } = require('../../models');
 const userAuthSignIn = async (req, res) => {
   try {
     const user = req.body;
+
     let UserFH = await User.findOne({ email: user.email });
 
-    if (!UserFH && user.providerId !== '') {
+    if (UserFH === null && user.providerId !== '') {
       const userDB = new User({
+        firstName: user.firstName,
+        lastName: user.lastName,
+        image: user.photoUrl,
         email: user.email,
         status: 'active',
       });
+      console.log("🚀 ~ file: userAuthSignIn.js:22 ~ userAuthSignIn ~ userDB:", userDB)
       UserFH = await userDB.save();
     }
 
@@ -22,9 +27,11 @@ const userAuthSignIn = async (req, res) => {
       if (UserFH && UserFH.status === 'active') {
 
         req.session.auth = {
-          User_id: UserFH.id,
+          User_id: UserFH._id,
+          firstName: UserFH.firstName,
+          lastName: UserFH.lastName,
           email: UserFH.email,
-          photo: UserFH.photo,
+          image: UserFH.image,
           role: UserFH.role
         }
 
@@ -33,11 +40,11 @@ const userAuthSignIn = async (req, res) => {
             return res.status(500).json({ message: 'Error al guardar la sesión.' });
           }
 
-          await firebase.auth().setCustomUserClaims(user.uid, req.session.auth);
+          await firebase.auth().setCustomUserClaims(user.localId, req.session.auth);
 
           let token;
           try {
-            token = await firebase.auth().createSessionCookie(user.stsTokenManager.accessToken, {
+            token = await firebase.auth().createSessionCookie(user.idToken, {
               expiresIn: parseInt(config.SESSION_TIME * 60 * 1000),
             });
 

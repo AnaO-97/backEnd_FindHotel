@@ -1,17 +1,12 @@
 require("dotenv").config();
 
 const config = {}
-config.DOMAINS = [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
-    undefined
-]
-
 config.PORT = process.env.PORT || 3000
+
+config.URL_MONGO_FINDHOTEL = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_NAME}.lmykssy.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
 
 config.URL_FRONT = process.env.URL_FRONT_FINDHOTEL
 config.URL_BACK = process.env.URL_BACK_FINDHOTEL
-config.URL_MONGO_FINDHOTEL = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_NAME}.lmykssy.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
 
 config.JWT_MAIL = process.env.JWT_MAIL_KEY
 config.MAIL_FINDHOTEL = process.env.MAIL_EMAIL
