@@ -1,38 +1,31 @@
-const { config } = require('../config');
 const mongoose = require('mongoose');
+const { handlerDecodeTokenIDSession } = require('../handlers/user');
 
-const validateAuthUserSession = (role = 'user') => async (req, res, next) => {
-    const cookies = req.cookies
+const validateAuthUserSession = (allowedRoles) => async (req, res, next) => {
+    try {
+        const sessionID = req.headers.authorization;
 
-    if (cookies) {
-        const sessionID = req.sessionID
-
-        try {
-
-            const db = mongoose.connection;
-            const Session = db.collection('sessions');
-            const { session } = await Session.findOne({ auth });
-
-            if (session) {
-                if (role === session.auth.role) {
-                    req.session = session.auth
-                    // next()
-                } else {
-                    res.redirect('/')
-                }
-            } else {
-                res.status(404).json({ message: 'Session not found' });
-            }
-        } catch (error) {
-            res.status(500).json({ error: error.message });
-        } finally {
-            await client.close();
+        if (!sessionID) {
+            return res.status(401).json({ message: 'Missing authorization token' });
         }
-    } else {
-        res.locals.userAuth = null;
+
+        const ID = handlerDecodeTokenIDSession(sessionID);
+
+        const db = mongoose.connection;
+        const Session = db.collection('sessions');
+        const { session: { auth } } = await Session.findOne({ _id: ID });
+
+        if (auth == null) {
+            return res.status(401).json({ message: 'Session not found or not authorized' });
+        }
+
+        if (!allowedRoles.includes(auth.role)) {
+            return res.status(403).json({ message: 'You do not have permission to access this route' });
+        }
+        next();
+    } catch (error) {
+        return res.status(500).json({ error: "Internal server error" });
     }
-    next();
-}
+};
 
-module.exports = validateAuthUserSession
-
+module.exports = validateAuthUserSession;

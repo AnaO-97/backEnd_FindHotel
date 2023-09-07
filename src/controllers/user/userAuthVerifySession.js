@@ -1,18 +1,23 @@
 const mongoose = require('mongoose');
 
 const userAuthVerifySession = async (req, res) => {
-    const id = req.body.id
     try {
-        const sessionID = handlerDecodeTokenIDSession(id);
+        const sessionID = req.headers.authorization;
+
+        if (!sessionID) {
+            return res.status(401).json({ message: 'Missing authorization token' });
+        }
+
+        const ID = handlerDecodeTokenIDSession(sessionID);
 
         const db = mongoose.connection;
         const Session = db.collection('sessions');
-        const userSession = await Session.findOne({ _id: sessionID });
-        if (userSession) {
-            res.status(200).json(true)
+        const { session: { auth } } = await Session.findOne({ _id: ID });
+        if (auth) {
+            res.status(200).json(auth)
         }
         else {
-            res.status(404).json(false)
+            res.status(404).json({ message: 'The session has expired, please log in again.' })
         }
     } catch (error) {
         res.status(400).json({ error: error.message })

@@ -1,6 +1,9 @@
 const validateAuthUserSession = require('./validateAuthUserSession')
-
-
+const deleteSessionsByEmail = require('./deleteSessionsByEmail')
+const { userSignUp, userActivate } = require('./validateUser')
 module.exports = {
-    validateAuthUserSession
+    userActivate,
+    userSignUp,
+    validateAuthUserSession,
+    deleteSessionsByEmail
 }

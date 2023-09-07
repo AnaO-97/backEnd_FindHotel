@@ -24,10 +24,11 @@ const {
     userAuthVerifySession,
     userAuthUpdateSession
 } = require('../controllers/user')
-const { userSignUp, userActivate } = require('../middlewares/validateUser.js');
+const { userSignUp, userActivate, deleteSessionsByEmail, validateAuthUserSession } = require('../middlewares');
 
-userRoutes.post("/auth/sign-in", userAuthSignIn)
-userRoutes.delete("/auth/sign-out", userAuthSignOut)
+
+userRoutes.post("/auth/sign-in", deleteSessionsByEmail, userAuthSignIn)
+userRoutes.post("/auth/sign-out", userAuthSignOut)
 userRoutes.get("/auth/session", userAuthVerifySession)
 userRoutes.put("/auth/session", userAuthUpdateSession)
 userRoutes.post("/auth/verify-email/:email", userAuthVerifyEmail)
